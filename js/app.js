@@ -93,25 +93,17 @@ function createNotification(dragEl) {
         </li>
   `;
   notificationInner.innerHTML += notification;
-  deleteNotifications();
+
   
-  // setTimeout(() => {
-  //   notificationInner.lastElementChild.classList.add("blur-hide");
-  //   setTimeout(() => {
-  //     notificationInner.removeChild(notificationInner.lastElementChild);
-  //   }, 280);
-  // }, 2600);
-}
-
-
-function deleteNotifications() {
-  let notifications = notificationInner.querySelectorAll(".notification__item");
-  notifications.forEach(element => {
+  setTimeout(() => {
+    notificationInner.lastElementChild.classList.add("blur-hide");
     setTimeout(() => {
-      element.remove();
-    }, 2000);
-  });
+      notificationInner.removeChild(notificationInner.lastElementChild);
+    }, 280);
+  }, 2600);
 }
+
+
 
 
 
