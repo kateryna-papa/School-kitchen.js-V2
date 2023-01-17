@@ -1,0 +1,444 @@
+body {
+  font-family: "Fredoka-Medium", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  background-color: #5cb299;
+}
+
+.pulse {
+  animation-name: anime;
+  animation-duration: 400ms;
+  animation-direction: alternate;
+  animation-timing-function: ease-in;
+}
+
+@keyframes anime {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.blur-show {
+  animation-name: blur-show;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+}
+
+@keyframes blur-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.blur-hide {
+  animation-name: blur-hide;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+}
+
+@keyframes blur-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.app {
+}
+.app__tray-box {
+  height: 150px;
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  user-select: none;
+}
+.app__tray {
+  display: flex;
+  max-width: 600px;
+  max-height: 300px;
+  overflow-y: auto;
+  flex-wrap: wrap;
+}
+.app__tray__container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.app__food-tray {
+  position: absolute;
+  left: 40%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  z-index: 100;
+}
+.app__tray::after {
+  content: "";
+  max-width: 450px;
+  width: 100%;
+  height: 150px;
+  background-image: url("../images/tray.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+.app__food-wrapper {
+  background-color: rgba(255, 255, 255, 0.551);
+  border-radius: 25px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.app__food-inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 20px;
+  max-height: 250px;
+  height: 100%;
+  padding: 15px;
+  overflow-y: auto;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; */
+}
+.app__food-item {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-color: rgba(0, 0, 0, 0.096);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.app__food-item:hover {
+  border: 2px solid #fff;
+  background-color: rgba(0, 0, 0, 0.199);
+  transform: scale(1.02);
+}
+.app__food-item:nth-child(odd):hover {
+  transform: rotate(5deg);
+}
+.app__food-item:nth-child(even):hover {
+  transform: rotate(-5deg);
+}
+.app__food-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  -webkit-user-drag: none;
+}
+.app__food-name {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  user-select: none;
+}
+.app__food-price {
+  text-align: center;
+  font-size: 18px;
+  color: #5cb299;
+  user-select: none;
+}
+
+.app__food-mobile__add-box {
+  display: none;
+}
+
+.app__food-mobile__add {
+  margin-top: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.514);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.app__food-mobile__add-btn {
+  background-color: rgba(155, 238, 238, 0.726);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.app__btn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app__btn {
+  margin: 0 auto;
+  padding: 20px 40px 20px 90px;
+  background-color: black;
+  border-radius: 50px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Fredoka-Medium", sans-serif;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.app__btn:active {
+  transform: scale(0.8);
+}
+
+.app__btn:hover .app__decor {
+  left: 30px;
+}
+.app__btn:hover {
+  background-color: rgba(0, 0, 0, 0.829);
+}
+.app__decor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #5cb299;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transition: all 0.5s;
+  transform: translateY(-50%);
+}
+
+/*notification*/
+
+.notification {
+  position: fixed;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  color: #fff;
+  user-select: none;
+  max-height: 250px;
+  overflow-y: hidden;
+  z-index: 999;
+}
+
+.notification__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.notification__item {
+  font-size: 16px;
+  line-height: 18px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.notification-add {
+  background-color: rgba(255, 255, 255, 0.551);
+  color: #000;
+}
+.notification-remove {
+  background-color: rgba(139, 0, 0, 0.781);
+}
+
+/*Modal Form*/
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 101;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hope {
+  width: 100px;
+  height: 200px;
+  background-color: #000;
+  color: #fff;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #f5f3ea;
+  margin: 15px auto;
+  padding: 20px;
+  border: 8px solid #ff8c00;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.close-btn {
+  color: #666666;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.form div {
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.705);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.form__select {
+  margin-bottom: 10px;
+  border: none;
+  padding: 10px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.form__btn {
+  display: flex;
+  margin: 0 auto;
+  padding: 15px 25px 15px 70px;
+  background-color: black;
+  border-radius: 50px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Fredoka-Medium", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.form__btn:active {
+  transform: scale(0.8);
+}
+
+.form__btn:hover .form__decor {
+  left: 23px;
+}
+
+.form__btn:hover {
+  background-color: rgba(0, 0, 0, 0.829);
+}
+
+.form__decor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #ff8c00;
+  border-radius: 50%;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transition: all 0.5s;
+  transform: translateY(-50%);
+}
+
+.app__price__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+.app__price__container-box {
+  background-color: rgba(255, 255, 255, 0.551);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  margin: 0 auto;
+}
+.app__price__text {
+  text-align: center;
+}
+.app__price__number {
+  text-align: center;
+}
+
+
+.form__list-items {
+  margin-left: 20px;
+}
+.total__price {
+  text-align: center;
+}
+.price {
+  display: flex;
+  justify-content: space-between;
+
+}

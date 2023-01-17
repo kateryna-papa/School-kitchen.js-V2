@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School kitchen</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+  </head>
+  <body>
+    <div class="notification">
+      <ul class="notification__inner">
+        <!-- <li class="notification__item notification-remove">
+          <span class="notification__text"> Страву </span>
+          <span class="notification__name">Хот-Дог</span>
+          <span class="notification__text"> було видалено з замовлення </span>
+        </li> -->
+      </ul>
+    </div>
+
+    <div class="app">
+      <div class="container">
+        <div class="app__tray__container">
+          <div class="app__tray-box">
+            <div class="app__tray"></div>
+          </div>
+          <div class="app__price__container">
+            <div class="app__price__container-box">
+              <div class="app__price__text">Вартість:</div>
+              <div class="app__price__number">
+                <span class="app__price__number-num">0</span> <span>UAH</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app__food-wrapper">
+          <ul class="app__food-inner"></ul>
+        </div>
+        <div class="app__btn-box">
+          <button class="app__btn">
+            <div class="app__decor">
+              <img src="images/arrow-right.svg" alt="" />
+            </div>
+            <span>Зробити замовлення</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="Modal" class="modal">
+      <div class="modal__inner">
+        <div class="modal-content">
+          <form class="form" name="feedback">
+            <div class="form__inner">
+              <div>Прізвище</div>
+              <button class="close-btn">&times;</button>
+            </div>
+            <input placeholder="Ваше Прізвище" type="text" name="name" />
+            <div>Ім’я</div>
+            <input placeholder="Ваше ім’я" type="text" name="surname" />
+            <div>Клас</div>
+            <select class="form__select" name="number">
+              <option value="">Виберіть варіант</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+            </select>
+            <div>Номер перерви</div>
+            <select class="form__select" name="number">
+              <option value="">Виберіть варіант</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+            <div>Список замовлення</div>
+            <div class="form__list">
+              <div class="form__list">
+                <ol class="form__list-items"></ol>
+              </div>
+              <div class="total__price">
+                Сума: <span class="total__price_form">0</span> <span>UAH</span>
+              </div>
+            </div>
+            <button type="submit" id="FormBtn" class="form__btn">
+              <div class="form__decor">
+                <img src="images/arrow-right.svg" alt="arrow" />
+              </div>
+              <span>Відправити</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+ 
+
+    <script src="js/modal.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

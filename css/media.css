@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+  .app__tray__container {
+    padding: 20px 0;
+  }
+  .app__food-wrapper {
+    margin-bottom: 20px;
+  }
+  .app__food-inner {
+    padding: 5px;
+    gap: 10px;
+  }
+  .app__food-item {
+    width: 120px;
+  }
+  .app__food-name {
+    font-size: 19px;
+    line-height: 20px;
+  }
+  .app__food-price {
+    font-size: 17px;
+    line-height: 18px;
+  }
+}
