@@ -85,6 +85,14 @@ body {
   overflow-y: auto;
   flex-wrap: wrap;
 }
+.app__tray-item-box{
+  position: relative;
+}
+.app__tray-count{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 .app__tray__container {
   padding-top: 50px;
   padding-bottom: 50px;
