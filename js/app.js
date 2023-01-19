@@ -8,6 +8,40 @@ const totalPriceForm = document.querySelector(".total__price_form");
 
 let trayArr = [];
 
+let isDesctop = true;
+/**Перевірка на тип девайсу */
+const isMobile = {
+  Android: function () {
+    return navigator.userAgent.match(/Android/i);
+  },
+  BlackBerry: function () {
+    return navigator.userAgent.match(/BlackBerry/i);
+  },
+  iOS: function () {
+    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+  },
+  Opera: function () {
+    return navigator.userAgent.match(/Opera Mini/i);
+  },
+  Windows: function () {
+    return navigator.userAgent.match(/IEMobile/i);
+  },
+  any: function () {
+    return (
+      isMobile.Android() ||
+      isMobile.BlackBerry() ||
+      isMobile.iOS() ||
+      isMobile.Opera() ||
+      isMobile.Windows()
+    );
+  },
+};
+if (isMobile.any()) {
+  isDesctop = false;
+} else {
+  isDesctop = true;
+}
+
 /*Масив товарів */
 let goods = [
   {
@@ -54,8 +88,6 @@ trayBox.addEventListener("dragover", function (event) {
   event.preventDefault();
 });
 
-let iniqueTrayMass = [];
-
 /*Додавання товару до массиву подноса */
 function addFoodToTray(dragEl) {
   let id = dragEl.getAttribute("data-id");
@@ -69,6 +101,7 @@ function addFoodToTray(dragEl) {
     imgUrl: imgUrl,
     count: 1,
   };
+
   if (trayArr.length == 0) {
     trayArr.push(newFood);
     return;
@@ -86,13 +119,10 @@ function addFoodToTray(dragEl) {
   if (flag == false) {
     trayArr.push(newFood);
   }
-
-  console.log(trayArr);
 }
 
 /*Логіка додавання в корзину */
 function addToTray(e) {
-  e.preventDefault();
   const dragEl = document.querySelector(".drag");
   // const img = dragEl.querySelector("img");
   // let clone = img.cloneNode(true);
@@ -135,7 +165,7 @@ function renderFoodsInTray(arr) {
         <div>
           <div class="app__tray-item-box">
             <img src="${item.imgUrl}" alt="food" class="app__food-img" />
-            <span class="app__tray-count">${'x ' + item.count}</span>
+            <span class="app__tray-count">${"x " + item.count}</span>
           </div>
         </div>
     `;
@@ -158,33 +188,75 @@ function calcPrice(arr) {
 function renderFoodsItems(arr) {
   let foodsHtml = arr.map((item) => {
     return `
-                <li data-id="${item.id}" draggable="true" class="app__food-item">
-              <img src="${item.imgUrl}" alt="food" class="app__food-img" />
-              <h3 class="app__food-name">${item.name}</h3>
-              <p class="app__food-price"><span class="app__food-price-num">${item.price}</span> <span>UAH</span></p>
-              <div class="app__food-mobile__add-box">
-                <div class="app__food-mobile__add">
-                  <button class="app__food-mobile__add-btn">Додати</button>
-                </div>
-              </div>
-            </li>
+    <li data-id="${item.id}" draggable="true" class="app__food-item">
+      <img src="${item.imgUrl}" alt="food" class="app__food-img" />
+      <h3 class="app__food-name">${item.name}</h3>
+      <p class="app__food-price"><span class="app__food-price-num">${item.price}</span> <span>UAH</span></p>
+       <div class="app__food-mobile__add-box">
+        <div class="app__food-mobile__add">
+          <button class="app__food-mobile__add-btn">Додати</button>
+        </div>
+       </div>
+      </li>
     `;
   });
   foodsHtml = foodsHtml.join(" ");
   foodsList.innerHTML = foodsHtml;
 
   let foods = document.querySelectorAll(".app__food-item");
-  foods.forEach((food) => {
+  let foodBtnsModal = document.querySelectorAll(".app__food-mobile__add-box");
+  let addBtns = document.querySelectorAll(".app__food-mobile__add-btn");
+
+  foods.forEach((food, i) => {
     /*Додаєм клас елементу, якого перетягуєм, для його ідентифікації*/
-    food.addEventListener("dragstart", () => {
-      food.classList.add("drag");
-    });
-    /*Забираєм клас елементу, якого перетягуєм*/
-    food.addEventListener("dragend", () => {
-      food.classList.remove("drag");
+
+    /**Додаваня в корзину драгНдроп*/
+    if (isDesctop) {
+      food.addEventListener("dragstart", () => {
+        food.classList.add("drag");
+      });
+      /*Забираєм клас елементу, якого перетягуєм*/
+      food.addEventListener("dragend", () => {
+        food.classList.remove("drag");
+      });
+    }
+
+    /**Додаваня в корзину по кліку на кнопку */
+    if (!isDesctop) {
+      food.addEventListener("click", () => {
+        if (foodBtnsModal[i].classList.contains("show")) {
+          closeModalBtns();
+        } else if (foodBtnsModal[i].classList.contains("show-add")) {
+          foodBtnsModal[i].classList.remove("show-add");
+        } else {
+          showModalBtn(i);
+        }
+      });
+    }
+  });
+
+  trayBox.addEventListener("drop", addToTray);
+
+  addBtns.forEach((item, i) => {
+    item.addEventListener("click", () => {
+      foods[i].classList.add("drag");
+      addToTray();
+      foods[i].classList.remove("drag");
+      foodBtnsModal[i].classList.remove("show");
+      foodBtnsModal[i].classList.add("show-add");
     });
   });
-  trayBox.addEventListener("drop", addToTray);
+
+  function showModalBtn(i) {
+    closeModalBtns();
+    foodBtnsModal[i].classList.add("show");
+  }
+
+  function closeModalBtns() {
+    foodBtnsModal.forEach((item) => {
+      item.classList.remove("show");
+    });
+  }
 }
 
 /*Функція виводу товару в список в формі */

@@ -228,6 +228,7 @@ body {
   font-weight: 500;
   position: relative;
   transition: all 0.5s;
+  user-select: none;
 }
 
 .app__btn:active {
@@ -335,6 +336,7 @@ body {
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
+  user-select: none;
 }
 
 .close:hover,
