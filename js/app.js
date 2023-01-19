@@ -5,6 +5,8 @@ const totalPriceNode = document.querySelector(".app__price__number-num");
 const notificationInner = document.querySelector(".notification__inner");
 const formList = document.querySelector(".form__list-items");
 const totalPriceForm = document.querySelector(".total__price_form");
+const form = document.querySelector(".form");
+const button = document.querySelector(".form__btn")
 
 let trayArr = [];
 
@@ -261,6 +263,22 @@ function renderFoodsItems(arr) {
 
 /*Функція виводу товару в список в формі */
 function renderFoodsList(arr) {
+ /* const formText = document.querySelector(".form__list-text");*/
+  if (trayArr.length != 0) {
+    formList.innerHTML = "Товарів ще немає"
+  } else {
+    let foodsHtml = arr.map((item) => {
+      return `
+        <div>
+          <div class="app__tray-item-box">
+            <img src="${item.imgUrl}" alt="food" class="app__food-img" />
+            <span class="app__tray-count">${"x " + item.count}</span>
+          </div>
+        </div>
+    `;
+    });
+  }
+
   let foodsHtml = arr.map((item) => {
     return `
       <li data-id="${item.id}">
@@ -276,3 +294,27 @@ function renderFoodsList(arr) {
   foodsHtml = foodsHtml.join(" ");
   formList.innerHTML = foodsHtml;
 }
+
+/*Функція створення об’єкту, який збирає дані з форми*/
+button.addEventListener('click', (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const surname = formData.get('surname');
+  const name = formData.get('name');
+  const classNum = formData.get('classNum');
+  const breakNum = formData.get('breakNum');
+
+  const order = {
+    surname: surname,
+    name: name,
+    classNum: classNum,
+    breakNum: breakNum,
+    list: trayArr
+  }
+
+  console.log(order);
+  form.reset();
+  trayArr = [];
+  trayInner.innerHTML = "";
+});
+
