@@ -85,10 +85,10 @@ body {
   overflow-y: auto;
   flex-wrap: wrap;
 }
-.app__tray-item-box{
+.app__tray-item-box {
   position: relative;
 }
-.app__tray-count{
+.app__tray-count {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -440,7 +440,6 @@ body {
   text-align: center;
 }
 
-
 .form__list-items {
   margin-left: 20px;
 }
@@ -450,5 +449,99 @@ body {
 .price {
   display: flex;
   justify-content: space-between;
+}
 
+/*CONTROL PANEL*/
+
+.header {
+}
+
+.header__inner {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 22px;
+}
+
+.panel {
+}
+
+.panel__inner {
+  padding-top: 30px;
+  display: flex;
+  gap: 10px;
+}
+.panel__menu-box {
+}
+.panel-box {
+  width: 100%;
+  border: 2px solid #fff;
+  min-height: 600px;
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+}
+.panel__orders-box {
+}
+
+.panel__menu-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.panel__menu-list {
+}
+.panel__menu__item {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.panel__menu__item-box {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.panel__menu__item-price {
+}
+.panel__menu__item-delete {
+  color: rgb(167, 6, 6);
+}
+.panel__orders-box {
+}
+.panel__order-list {
+}
+.panel__order-item {
+  position: relative;
+  padding-top: 35px;
+}
+.panel__order-item-box{
+  padding: 10px;
+  border-radius: 0 10px 10px;
+  background-color: rgb(9 74 65 / 100%)
+
+}
+.panel__order-timeout {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: -1;
+  background-color:rgb(9 74 65 / 100%)
+}
+.panel__order-top {
+}
+.panel__order-info {
+}
+.panel__order-marker__btn {
+}
+.panel__orders-list__items {
+}
+.panel__orders-food {
+}
+.panel__order-fullprice {
 }
