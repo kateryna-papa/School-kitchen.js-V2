@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School kitchen</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <heeader class="header">
+      <div class="container">
+        <div class="header__inner">
+          <p class="header__name">School kitchen</p>
+          <a href="index.html" class="header__link"> Users page *test </a>
+        </div>
+      </div>
+    </heeader>
+
+    <section class="panel">
+      <div class="container">
+        <div class="panel__inner">
+          <div class="panel__menu-box panel-box">
+            <h2 class="panel__menu-title">Меню</h2>
+            <ul class="panel__menu-list">
+              <li class="panel__menu__item">
+                <div class="panel__menu__item-box">
+                  <p class="panel__menu__item-name">Хот-Дог</p>
+                  <p class="panel__menu__item-price">Ціна: 30 UAH</p>
+                </div>
+                <button class="panel__menu__item-delete">Видалити</button>
+              </li>
+              <li class="panel__menu__item">
+                <div class="panel__menu__item-box">
+                  <p class="panel__menu__item-name">Хот-Дог</p>
+                  <p class="panel__menu__item-price">Ціна: 30 UAH</p>
+                </div>
+                <button class="panel__menu__item-delete">Видалити</button>
+              </li>
+            </ul>
+          </div>
+          <div class="panel__orders-box panel-box">
+            <h2 class="panel__menu-title">Замовлення</h2>
+            <ul class="panel__order-list">
+              <li class="panel__order-item">
+                <div class="panel__order-item-box">
+                  <div class="panel__order-timeout">Перерва: 2</div>
+                  <div class="panel__order-top">
+                    <p class="panel__order-info">Ім'я Прізвище Клас - 8</p>
+                    <button class="panel__order-marker__btn">
+                      Відмітити як виконаний
+                    </button>
+                  </div>
+                  <ol class="panel__orders-list__items">
+                    <li class="panel__orders-food">Хот - Дог х1</li>
+                  </ol>
+                  <p class="panel__order-fullprice">
+                    Загальна сумма замовлення: 100 UAH
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
