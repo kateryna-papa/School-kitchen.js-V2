@@ -444,15 +444,11 @@ body {
 .form__list-items {
   margin-left: 20px;
 }
-.form__list-text p{
-  text-align: center;
-  font-size: 16px;
-  color: red;
-}
 .total__price {
   text-align: center;
 }
 .price {
   display: flex;
   justify-content: space-between;
+
 }
