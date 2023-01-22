@@ -515,6 +515,15 @@ input:valid, select:valid {
 }
 .panel__orders-box {
 }
+.panel__menu__item-delete{
+  padding: 7px;
+  border-radius: 10px;
+  transition: all .5s;
+   border: 1px solid transparent;
+}
+.panel__menu__item-delete:hover{
+  border: 1px solid red;
+}
 
 .panel__menu-title {
   text-align: center;
@@ -547,10 +556,11 @@ input:valid, select:valid {
 }
 .panel__order-item {
   position: relative;
-  padding-top: 35px;
+  padding-top: 45px;
+  margin-bottom: 20px;
 }
 .panel__order-item-box{
-  padding: 10px;
+  padding: 15px;
   border-radius: 0 10px 10px;
   background-color: rgb(9 74 65 / 100%)
 
@@ -559,20 +569,37 @@ input:valid, select:valid {
   position: absolute;
   top: 0;
   left: 0px;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   z-index: -1;
   background-color:rgb(9 74 65 / 100%)
 }
 .panel__order-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .panel__order-info {
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 .panel__order-marker__btn {
+  padding: 8px;
+  background-color: rgb(247, 247, 247);
+  border-radius: 10px;
+  transition: all .5s;
+}
+.panel__order-marker__btn:hover{
+  background-color: rgba(247, 247, 247, 0.459);
 }
 .panel__orders-list__items {
+  padding-left: 20px;
+  margin-bottom: 15px;
 }
 .panel__orders-food {
+  margin-bottom: 10px;
 }
 .panel__order-fullprice {
+  display: flex;
+  justify-content: flex-end;
 }
