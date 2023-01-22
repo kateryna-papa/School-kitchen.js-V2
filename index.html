@@ -21,8 +21,6 @@
       </ul>
     </div>
 
-    
-
     <div class="app">
       <div class="container">
         <div class="app__tray__container">
@@ -60,11 +58,29 @@
               <div>Прізвище</div>
               <button class="close-btn">&times;</button>
             </div>
-            <input placeholder="Ваше Прізвище" type="text" name="name" />
+            <input
+              class="input input__surname"
+              placeholder="Ваше Прізвище"
+              type="text"
+              name="surname"
+              required
+              maxlength="20"
+            />
             <div>Ім’я</div>
-            <input placeholder="Ваше ім’я" type="text" name="surname" />
+            <input
+              class="input input__name"
+              placeholder="Ваше ім’я"
+              type="text"
+              name="name"
+              required
+              maxlength="20"
+            />
             <div>Клас</div>
-            <select class="form__select" name="number">
+            <select
+              class="form__select select class__select"
+              name="classNum"
+              required
+            >
               <option value="">Виберіть варіант</option>
               <option>1</option>
               <option>2</option>
@@ -79,7 +95,11 @@
               <option>11</option>
             </select>
             <div>Номер перерви</div>
-            <select class="form__select" name="number">
+            <select
+              class="form__select select break__select"
+              name="breakNum"
+              required
+            >
               <option value="">Виберіть варіант</option>
               <option>1</option>
               <option>2</option>
@@ -88,9 +108,13 @@
               <option>5</option>
               <option>6</option>
             </select>
-            <div>Список замовлення</div>
+            <div class="error-message"></div>
+            <div class="form__list-orders-title">Список замовлення</div>
             <div class="form__list">
               <div class="form__list">
+                <div class="form__list-text">
+                  Ви не додали жодного товару
+                </div>
                 <ol class="form__list-items"></ol>
               </div>
               <div class="total__price">

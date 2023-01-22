@@ -5,6 +5,9 @@ const totalPriceNode = document.querySelector(".app__price__number-num");
 const notificationInner = document.querySelector(".notification__inner");
 const formList = document.querySelector(".form__list-items");
 const totalPriceForm = document.querySelector(".total__price_form");
+const form = document.querySelector(".form");
+const formButton = document.querySelector(".form__btn");
+let ErrorMessage = document.querySelector(".error-message");
 
 let trayArr = [];
 
@@ -131,7 +134,7 @@ function addToTray(e) {
   setTimeout(() => {
     trayBox.classList.remove("pulse");
   }, 400);
-
+  ErrorMessage.innerHTML = '';
   addFoodToTray(dragEl);
   calcPrice(trayArr);
   renderFoodsInTray(trayArr);
@@ -261,8 +264,14 @@ function renderFoodsItems(arr) {
 
 /*Функція виводу товару в список в формі */
 function renderFoodsList(arr) {
-  let foodsHtml = arr.map((item) => {
-    return `
+  const formText = document.querySelector(".form__list-text");
+  if (trayArr.length == 0) {
+    formText.style.display = "block";
+     formList.innerHTML = '';
+  } else {
+    formText.style.display = "none";
+    let foodsHtml = arr.map((item) => {
+      return `
       <li data-id="${item.id}">
         <div class="price">
            <span>${item.name + ` x` + item.count}</span> 
@@ -272,7 +281,68 @@ function renderFoodsList(arr) {
         </div>
       </li>
     `;
-  });
-  foodsHtml = foodsHtml.join(" ");
-  formList.innerHTML = foodsHtml;
+    });
+    foodsHtml = foodsHtml.join(" ");
+    formList.innerHTML = foodsHtml;
+  }
 }
+
+/*Функція створення об’єкту, який збирає дані з форми*/
+formButton.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const surname = formData.get("surname");
+  const name = formData.get("name");
+  const classNum = formData.get("classNum");
+  const breakNum = formData.get("breakNum");
+
+  /*Валідація форми*/
+  const inputSurname = document.querySelector(".input__surname");
+  const inputName = document.querySelector(".input__name");
+  const selectClassNum = document.querySelector(".class__select");
+  const selectBreakNum = document.querySelector(".break__select");
+
+  if(trayArr.length == 0){
+  ErrorMessage.innerHTML = "Додайте хочаб 1 страву";
+  } else if (!inputSurname.value) {
+    ErrorMessage.innerHTML = "Введіть Ваше Прізвище";
+    inputSurname.classList.add("invalid");
+  } else if (!inputName.value) {
+    ErrorMessage.innerHTML = "Введіть Ваше Ім'я";
+    inputSurname.classList.remove("invalid");
+    inputName.classList.add("invalid");
+  } else if (!selectClassNum.value) {
+    ErrorMessage.innerHTML = "Виберіть ваш клас";
+    inputName.classList.remove("invalid");
+    selectClassNum.classList.add("invalid");
+  } else if (!selectBreakNum.value) {
+    ErrorMessage.innerHTML = "Виберіть номер перерви";
+    selectBreakNum.classList.add("invalid");
+    selectClassNum.classList.remove("invalid");
+  } else {
+    ErrorMessage.innerHTML = "";
+    selectBreakNum.classList.remove("invalid");
+    inputName.classList.remove("invalid");
+    selectClassNum.classList.remove("invalid");
+    inputSurname.classList.remove("invalid");
+
+    const order = {
+      surname: surname,
+      name: name,
+      classNum: classNum,
+      breakNum: breakNum,
+      list: trayArr,
+    };
+
+    console.log(order);
+
+    
+    form.reset();
+    trayArr = [];
+    trayInner.innerHTML = "";
+    renderFoodsList(trayArr);
+    calcPrice(trayArr);
+  }
+});
+
