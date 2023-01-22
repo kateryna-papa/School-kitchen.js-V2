@@ -440,6 +440,10 @@ body {
   text-align: center;
 }
 
+.form__list-orders-title{
+  text-align: center;
+}
+
 .form__list-items {
   margin-left: 20px;
 }
@@ -450,6 +454,33 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.form__list-text {
+  text-align: center;
+  font-size: 15px;
+}
+.total__price {
+  text-align: center;
+}
+.price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-message{
+  color: red !important;
+  text-align: center;
+}
+
+.invalid{
+border: red solid 2px;
+}
+
+input:valid, select:valid {
+  border: black solid 2px;
+}
+
+
 
 /*CONTROL PANEL*/
 
