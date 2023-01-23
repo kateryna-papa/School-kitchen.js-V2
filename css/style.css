@@ -485,6 +485,7 @@ input:valid, select:valid {
 /*CONTROL PANEL*/
 
 .header {
+
 }
 
 .header__inner {
@@ -492,7 +493,23 @@ input:valid, select:valid {
   display: flex;
   justify-content: space-between;
   color: #fff;
-  font-size: 22px;
+  font-size: 32px;
+}
+.header__img{
+  width: 100px;
+  height: 100px;
+}
+.header__right{
+  display: flex;
+}
+.header__name, .header__link{
+  padding-top: 30px;
+}
+.header__center img{
+  margin-top: 20px;
+  padding: 15px 25px 15px 25px;
+  background-color: white;
+  border-radius: 40px;
 }
 
 .panel {
@@ -504,16 +521,28 @@ input:valid, select:valid {
   gap: 10px;
 }
 .panel__menu-box {
+  background-color: #0A2A22;
+
 }
 .panel-box {
   width: 100%;
-  border: 2px solid #fff;
+  border: 4px solid #fff;
   min-height: 600px;
   border-radius: 10px;
   padding: 10px;
   color: #fff;
 }
 .panel__orders-box {
+  background-color: #E3F6CE;
+}
+.panel__menu__item-delete{
+  padding: 7px;
+  border-radius: 10px;
+  transition: all .5s;
+  border: 1px solid transparent;
+}
+.panel__menu__item-delete:hover{
+  border: 1px solid red;
 }
 .panel__menu__item-delete{
   padding: 7px;
@@ -527,7 +556,8 @@ input:valid, select:valid {
 
 .panel__menu-title {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  padding: 5px;
 }
 .panel__menu-list {
 }
@@ -536,7 +566,8 @@ input:valid, select:valid {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgb(255, 255, 255);
+  background-color: #04B486;
+  border: yellow 3px dashed;
   border-radius: 10px;
   margin-bottom: 10px;
 }
@@ -550,19 +581,21 @@ input:valid, select:valid {
 .panel__menu__item-delete {
   color: rgb(167, 6, 6);
 }
-.panel__orders-box {
+.panel__orders-box h2 {
+  color: black;
 }
 .panel__order-list {
 }
 .panel__order-item {
   position: relative;
-  padding-top: 45px;
+  padding-top: 5px;
   margin-bottom: 20px;
 }
 .panel__order-item-box{
   padding: 15px;
   border-radius: 0 10px 10px;
-  background-color: rgb(9 74 65 / 100%)
+  background-color: #0B3B2E;
+  /*background-color: rgb(9 74 65 / 100%)*/
 
 }
 .panel__order-timeout {
@@ -584,9 +617,9 @@ input:valid, select:valid {
   margin-bottom: 15px;
 }
 .panel__order-marker__btn {
-  padding: 8px;
+  padding: 12px;
   background-color: rgb(247, 247, 247);
-  border-radius: 10px;
+  border-radius: 30px;
   transition: all .5s;
 }
 .panel__order-marker__btn:hover{
@@ -602,4 +635,5 @@ input:valid, select:valid {
 .panel__order-fullprice {
   display: flex;
   justify-content: flex-end;
+  text-decoration: solid 2px underline yellow;
 }
