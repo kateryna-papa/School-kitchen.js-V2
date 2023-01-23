@@ -11,54 +11,60 @@
     <link rel="stylesheet" href="css/media.css" />
   </head>
   <body>
-    <div class="notification">
-      <ul class="notification__inner">
-        <!-- <li class="notification__item notification-remove">
+    <div class="wrapper">
+      <div class="notification">
+        <ul class="notification__inner">
+          <!-- <li class="notification__item notification-remove">
           <span class="notification__text"> Страву </span>
           <span class="notification__name">Хот-Дог</span>
           <span class="notification__text"> було видалено з замовлення </span>
         </li> -->
-      </ul>
-    </div>
-<heeader class="header">
-    <div class="container">
-        <div class="header__inner">
+        </ul>
+      </div>
+      <header class="header">
+        <div class="container">
+          <div class="header__inner">
             <div class="header__right">
-                <p class="header__name">School kitchen </p>
-                <img class="header__img" src="images/icon2.svg">
+              <p class="header__name">School kitchen</p>
+              <img class="header__img" src="images/icon2.svg" />
             </div>
             <div class="header__center">
-                <img src="images/healthy.svg">
+              <img src="images/healthy.svg" />
             </div>
-            <a href="control-panel.html" class="header__link"> Control page *test </a>
-        </div>
-    </div>
-</heeader>
-    <div class="app">
-      <div class="container">
-        <div class="app__tray__container">
-          <div class="app__tray-box">
-            <div class="app__tray"></div>
+            <div class="header__link-box">
+              <a href="control-panel.html" class="header__link">
+                Control page *test
+              </a>
+            </div>
           </div>
-          <div class="app__price__container">
-            <div class="app__price__container-box">
-              <div class="app__price__text">Вартість:</div>
-              <div class="app__price__number">
-                <span class="app__price__number-num">0</span> <span>UAH</span>
+        </div>
+      </header>
+      <div class="app">
+        <div class="container">
+          <div class="app__tray__container">
+            <div class="app__tray-box">
+              <div class="app__tray"></div>
+            </div>
+            <div class="app__price__container">
+              <div class="app__price__container-box">
+                <div class="app__price__text">Вартість:</div>
+                <div class="app__price__number">
+                  <span class="app__price__number-num">0</span> <span>UAH</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="app__food-wrapper">
-          <ul class="app__food-inner"></ul>
-        </div>
-        <div class="app__btn-box">
-          <button class="app__btn">
-            <div class="app__decor">
-              <img src="images/arrow-right.svg" alt="" />
-            </div>
-            <span>Зробити замовлення</span>
-          </button>
+          <div class="app__food-wrapper">
+            <ul class="app__food-inner"></ul>
+          </div>
+          <div class="app__btn-box">
+            <button class="app__btn">
+              <div class="app__decor">
+                <img src="images/arrow-right.svg" alt="" />
+              </div>
+              <span>Зробити замовлення</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -125,9 +131,7 @@
             <div class="form__list-orders-title">Список замовлення</div>
             <div class="form__list">
               <div class="form__list">
-                <div class="form__list-text">
-                  Ви не додали жодного товару
-                </div>
+                <div class="form__list-text">Ви не додали жодного товару</div>
                 <ol class="form__list-items"></ol>
               </div>
               <div class="total__price">
