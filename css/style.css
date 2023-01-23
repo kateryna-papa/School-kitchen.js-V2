@@ -94,7 +94,7 @@ body {
   right: 0;
 }
 .app__tray__container {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 .app__food-tray {
   position: absolute;
@@ -124,7 +124,8 @@ body {
   border-radius: 25px;
   padding: 10px;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  min-height: 190px;
 }
 .app__food-inner {
   width: 100%;
@@ -218,7 +219,7 @@ body {
 }
 .app__btn {
   margin: 0 auto;
-  padding: 20px 40px 20px 90px;
+  padding: 15px 35px 15px 70px;
   background-color: black;
   border-radius: 50px;
   color: #fff;
@@ -235,7 +236,7 @@ body {
 }
 
 .app__btn:hover .app__decor {
-  left: 30px;
+  left: 25px;
 }
 .app__btn:hover {
   background-color: rgba(0, 0, 0, 0.829);
@@ -244,8 +245,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-color: #5cb299;
   border-radius: 50%;
   position: absolute;
@@ -484,40 +485,48 @@ input:valid, select:valid {
 /*CONTROL PANEL*/
 
 .header {
-
+  padding: 10px 0;
+  user-select: none;
+  background-color: rgb(0 0 0 / 18%);
+  margin-bottom: 30px;
 }
 
 .header__inner {
-  padding: 10px 0;
   display: flex;
+  gap: 10px;
   justify-content: space-between;
   color: #fff;
-  font-size: 32px;
+  font-size: 23px;
 }
 .header__img{
-  width: 100px;
-  height: 100px;
+  max-width: 35px;
 }
 .header__right{
   display: flex;
+  gap: 10px;
+  align-items: center;
 }
-.header__name, .header__link{
-  padding-top: 30px;
+
+.header__link-box{
+  display: flex;
+  align-items: center;
 }
+
 .header__center img{
-  margin-top: 20px;
+  margin-top: 5px;
   padding: 15px 25px 15px 25px;
   background-color: white;
   border-radius: 40px;
+  max-width: 100%;
 }
 
 .panel {
 }
 
 .panel__inner {
-  padding-top: 30px;
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 .panel__menu-box {
   background-color: #0A2A22;
