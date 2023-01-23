@@ -552,6 +552,15 @@ input:valid, select:valid {
 .panel__menu__item-delete:hover{
   border: 1px solid red;
 }
+.panel__menu__item-delete{
+  padding: 7px;
+  border-radius: 10px;
+  transition: all .5s;
+   border: 1px solid transparent;
+}
+.panel__menu__item-delete:hover{
+  border: 1px solid red;
+}
 
 .panel__menu-title {
   text-align: center;
