@@ -1,7 +1,7 @@
 let modal = document.querySelector(".modal");
 let openModalBtn = document.querySelector(".app__btn");
 let closeBtn = document.querySelector(".close-btn");
-
+const bodyNode = document.querySelector("body");
 openModalBtn.addEventListener("click", () => {
   showModal(modal);
 });
@@ -24,6 +24,7 @@ function closeModal(modal) {
   setTimeout(() => {
     modal.classList.remove("show");
     modal.classList.remove("blur-hide");
+    bodyNode.classList.remove("hidden");
   }, 280);
 }
 
@@ -32,5 +33,6 @@ function showModal(modal) {
   modal.classList.add("blur-show");
   setTimeout(() => {
     modal.classList.remove("blur-show");
+    bodyNode.classList.add("hidden");
   }, 280);
 }

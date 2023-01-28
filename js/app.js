@@ -420,6 +420,7 @@ formButton.addEventListener("click", (e) => {
     setTimeout(() => {
       modal.classList.remove("show");
       modal.classList.remove("blur-hide");
+      bodyNode.classList.remove('hidden')
     }, 280);
   }
   function showModal(modal) {
@@ -427,6 +428,7 @@ formButton.addEventListener("click", (e) => {
     modal.classList.add("blur-show");
     setTimeout(() => {
       modal.classList.remove("blur-show");
+      bodyNode.classList.add("hidden");
     }, 280);
   }
 });
