@@ -237,6 +237,7 @@ box-shadow: 5px 5px 5px 0px rgba(48,48,48,1);
   justify-content: center;
   align-items: center;
   transition: all .3s;
+  color: #000;
 }
 .app__tray-prev:hover{
   transform: scale(1.02);
