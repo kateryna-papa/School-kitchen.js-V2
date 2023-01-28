@@ -376,10 +376,9 @@ formButton.addEventListener("click", (e) => {
       classNum: classNum,
       breakNum: breakNum,
       list: trayArr,
-      date: new Date().toLocaleDateString(),
+      date: new Date().toLocaleString(),
     };
 
-    console.log(order);
 
     /*Відправка замовлення в базу даних*/
     class ApiService {
