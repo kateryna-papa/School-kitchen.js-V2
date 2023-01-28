@@ -13,6 +13,10 @@ body {
   animation-timing-function: ease-in;
 }
 
+.hidden{
+  overflow: hidden;
+}
+
 .done {
   background-color: #00d32e !important;
 }
