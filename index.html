@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>School kitchen</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/fonts.css" />
@@ -44,6 +47,12 @@
           <div class="app__tray__container">
             <div class="app__tray-box">
               <div class="app__tray"></div>
+            </div>
+            <div class="app__tray-btn">
+              <button class="app__tray-prev">
+                Видалити останній
+                <img src="images/prev.jpg" alt="" class="app__tray-prev__img" />
+              </button>
             </div>
             <div class="app__price__container">
               <div class="app__price__container-box">
@@ -145,6 +154,17 @@
               <span>Відправити</span>
             </button>
           </form>
+        </div>
+      </div>
+    </div>
+
+     <div id="Modal-done" class="modal">
+      <div class="modal__inner">
+        <div class="modal-content">
+          <p class="modal__message">
+            Ваше замовлення успішно відправлено:)
+          </p>
+          <img class="modal__complete-img" src="images/complete.png" alt="complete">
         </div>
       </div>
     </div>

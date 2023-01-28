@@ -7,8 +7,11 @@ const formList = document.querySelector(".form__list-items");
 const totalPriceForm = document.querySelector(".total__price_form");
 const form = document.querySelector(".form");
 const formButton = document.querySelector(".form__btn");
-let ErrorMessage = document.querySelector(".error-message");
+const deleteBtn = document.querySelector(".app__tray-prev");
+const formModal = document.getElementById("Modal");
+const doneModal = document.getElementById("Modal-done");
 
+let ErrorMessage = document.querySelector(".error-message");
 
 let trayArr = [];
 
@@ -125,6 +128,11 @@ function addFoodToTray(dragEl) {
   }
 }
 
+deleteBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  deleteLastFood(trayArr);
+});
+
 /*Логіка додавання в корзину */
 function addToTray(e) {
   const dragEl = document.querySelector(".drag");
@@ -135,12 +143,30 @@ function addToTray(e) {
   setTimeout(() => {
     trayBox.classList.remove("pulse");
   }, 400);
-  ErrorMessage.innerHTML = '';
+  ErrorMessage.innerHTML = "";
   addFoodToTray(dragEl);
   calcPrice(trayArr);
   renderFoodsInTray(trayArr);
   renderFoodsList(trayArr);
   createNotification(dragEl);
+}
+
+function createDeleteNotification(obj) {
+  let notification = `
+          <li class="notification__item notification-remove">
+          <span class="notification__text"> Страву </span>
+          <span class="notification__name">${obj.name}</span>
+          <span class="notification__text"> було видалено з замовлення </span>
+        </li>
+  `;
+  notificationInner.innerHTML += notification;
+
+  setTimeout(() => {
+    notificationInner.lastElementChild.classList.add("blur-hide");
+    setTimeout(() => {
+      notificationInner.removeChild(notificationInner.lastElementChild);
+    }, 280);
+  }, 2600);
 }
 
 function createNotification(dragEl) {
@@ -153,7 +179,7 @@ function createNotification(dragEl) {
         </li>
   `;
   notificationInner.innerHTML += notification;
-
+  let notifications;
   setTimeout(() => {
     notificationInner.lastElementChild.classList.add("blur-hide");
     setTimeout(() => {
@@ -268,7 +294,7 @@ function renderFoodsList(arr) {
   const formText = document.querySelector(".form__list-text");
   if (trayArr.length == 0) {
     formText.style.display = "block";
-     formList.innerHTML = '';
+    formList.innerHTML = "";
   } else {
     formText.style.display = "none";
     let foodsHtml = arr.map((item) => {
@@ -288,6 +314,22 @@ function renderFoodsList(arr) {
   }
 }
 
+/*Ввидалення страви */
+function deleteLastFood(trayArr) {
+  if (trayArr.length > 0) {
+    if (trayArr[trayArr.length - 1].count > 1) {
+      createDeleteNotification(trayArr[trayArr.length - 1]);
+      trayArr[trayArr.length - 1].count = trayArr[trayArr.length - 1].count - 1;
+    } else {
+      createDeleteNotification(trayArr[trayArr.length - 1]);
+      trayArr.pop();
+    }
+    calcPrice(trayArr);
+    renderFoodsInTray(trayArr);
+    renderFoodsList(trayArr);
+  }
+}
+
 /*Функція створення об’єкту, який збирає дані з форми*/
 formButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -304,8 +346,8 @@ formButton.addEventListener("click", (e) => {
   const selectClassNum = document.querySelector(".class__select");
   const selectBreakNum = document.querySelector(".break__select");
 
-  if(trayArr.length == 0){
-  ErrorMessage.innerHTML = "Додайте хочаб 1 страву";
+  if (trayArr.length == 0) {
+    ErrorMessage.innerHTML = "Додайте хочаб 1 страву";
   } else if (!inputSurname.value) {
     ErrorMessage.innerHTML = "Введіть Ваше Прізвище";
     inputSurname.classList.add("invalid");
@@ -334,40 +376,58 @@ formButton.addEventListener("click", (e) => {
       classNum: classNum,
       breakNum: breakNum,
       list: trayArr,
-      date: new Date().toLocaleDateString()
+      date: new Date().toLocaleDateString(),
     };
 
     console.log(order);
 
-/*Відправка замовлення в базу даних*/
+    /*Відправка замовлення в базу даних*/
     class ApiService {
       constructor(baseUrl) {
-        this.url = baseUrl
+        this.url = baseUrl;
       }
 
       async createOrder(order) {
         try {
-          const request = new Request(this.url + '/orders.json', {
-            method: 'POST',
-            body: JSON.stringify(order)
-          })
-          const response = await fetch(request)
-          return await response.json()
+          const request = new Request(this.url + "/orders.json", {
+            method: "POST",
+            body: JSON.stringify(order),
+          });
+          const response = await fetch(request);
+          return await response.json();
         } catch (error) {
-          console.error(error )
+          console.error(error);
         }
-
       }
     }
-    const apiService = new ApiService('https://school-kitchen-b274e-default-rtdb.firebaseio.com');
+    const apiService = new ApiService(
+      "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
+    );
     apiService.createOrder(order);
-
-
+    closeModal(formModal);
+    showModal(doneModal);
+    setTimeout(() => {
+      closeModal(doneModal);
+    }, 1000);
     form.reset();
     trayArr = [];
     trayInner.innerHTML = "";
     renderFoodsList(trayArr);
     calcPrice(trayArr);
   }
-});
 
+  function closeModal(modal) {
+    modal.classList.add("blur-hide");
+    setTimeout(() => {
+      modal.classList.remove("show");
+      modal.classList.remove("blur-hide");
+    }, 280);
+  }
+  function showModal(modal) {
+    modal.classList.add("show");
+    modal.classList.add("blur-show");
+    setTimeout(() => {
+      modal.classList.remove("blur-show");
+    }, 280);
+  }
+});
