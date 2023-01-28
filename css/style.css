@@ -13,6 +13,10 @@ body {
   animation-timing-function: ease-in;
 }
 
+.done{
+  background-color: #00d32e !important;
+}
+
 @keyframes anime {
   from {
     transform: scale(1.02);
@@ -510,6 +514,7 @@ input:valid, select:valid {
 .header__link-box{
   display: flex;
   align-items: center;
+  color: transparent;
 }
 
 .header__center img{
