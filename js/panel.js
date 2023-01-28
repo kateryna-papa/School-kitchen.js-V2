@@ -28,7 +28,12 @@ function renderOrders(ordersArr) {
         return `
             <li class="panel__order-item">
                 <div class="panel__order-item-box">
-                  <div class="panel__order-timeout">Перерва: 2</div>
+                  <div class="panel__order-timeout">Перерва: ${
+                    order.breakNum
+                  }</div>
+                  <div class="panel__order-timeout panel__order-date">Дата: ${
+                    order.date
+                  }</div>
                   <div class="panel__order-top">
                     <p class="panel__order-info">${
                       order.name +
@@ -61,10 +66,10 @@ function renderOrders(ordersArr) {
         e.preventDefault();
         if (e.target.classList.contains("done")) {
           e.target.classList.remove("done");
-          e.target.textContent = 'Не виконано'
+          e.target.textContent = "Не виконано";
         } else {
           e.target.classList.add("done");
-           e.target.textContent = "Виконано";
+          e.target.textContent = "Виконано";
         }
       });
     });
