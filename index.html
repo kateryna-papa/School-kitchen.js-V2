@@ -8,6 +8,10 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
     <title>School kitchen</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/fonts.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -45,7 +49,7 @@
       <div class="app">
         <div class="container">
           <div class="app__tray__container">
-            <div class="app__tray-box">
+            <div class="app__tray-box animate__animated animate__fadeInDown">
               <div class="app__tray"></div>
             </div>
             <div class="app__tray-btn">
@@ -66,7 +70,7 @@
           <div class="app__food-wrapper">
             <ul class="app__food-inner"></ul>
           </div>
-          <div class="app__btn-box">
+          <div class="app__btn-box animate__animated animate__fadeInUp">
             <button class="app__btn">
               <div class="app__decor">
                 <img src="images/arrow-right.svg" alt="" />
@@ -81,7 +85,7 @@
     <div id="Modal" class="modal">
       <div class="modal__inner">
         <div class="modal-content">
-          <form class="form" name="feedback">
+          <form class="form animate__animated" name="feedback">
             <div class="form__inner">
               <div>Прізвище</div>
               <button class="close-btn">&times;</button>
@@ -158,13 +162,15 @@
       </div>
     </div>
 
-     <div id="Modal-done" class="modal">
+    <div id="Modal-done" class="modal">
       <div class="modal__inner">
         <div class="modal-content">
-          <p class="modal__message">
-            Ваше замовлення успішно відправлено:)
-          </p>
-          <img class="modal__complete-img" src="images/complete.png" alt="complete">
+          <p class="modal__message">Ваше замовлення успішно відправлено:)</p>
+          <img
+            class="modal__complete-img"
+            src="images/complete.png"
+            alt="complete"
+          />
         </div>
       </div>
     </div>
