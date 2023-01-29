@@ -50,35 +50,18 @@
             </ul>
           </div>
           <div class="panel__orders-box panel-box">
+            <div class="loader-box">
+              <div class="loader"></div>
+            </div>
+            <button class="panel__orders-render">Оновити данні <img class="load__img" src="images/load.png" alt=""></button>
             <h2 class="panel__menu-title">Замовлення</h2>
-            <ul class="panel__order-list">
-              <li class="panel__order-item">
-                <div class="panel__order-item-box">
-                  <div class="panel__order-timeout">Перерва: 2</div>
-                  <div class="panel__order-timeout panel__order-date">
-                    Дата: 2
-                  </div>
-                  <div class="panel__order-top">
-                    <p class="panel__order-info">Ім'я Прізвище Клас - 8</p>
-                    <button class="panel__order-marker__btn">
-                      Відмітити як виконаний
-                    </button>
-                  </div>
-                  <ol class="panel__orders-list__items">
-                    <li class="panel__orders-food">Хот - Дог х1</li>
-                  </ol>
-                  <p class="panel__order-fullprice">
-                    Загальна сумма замовлення: 100 UAH
-                  </p>
-                </div>
-              </li>
-            </ul>
+            <ul class="panel__order-list"></ul>
           </div>
         </div>
       </div>
     </section>
 
-    <div id="Modal-menu" style="display: block" class="modal">
+    <div id="Modal-menu"  class="modal">
       <div class="modal__inner">
         <div class="modal-content">
           <form class="form" name="menu">
