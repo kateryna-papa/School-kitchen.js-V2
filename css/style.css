@@ -660,6 +660,11 @@ select:valid {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #000;
+}
+
+.panel__select select{
+  color: #000;
 }
 .panel__orders-box {
   background-color: #e3f6ce;
