@@ -77,6 +77,13 @@ body {
   }
 }
 
+.animate__animated.animate__fadeInDown {
+  --animate-duration: 2s;
+}
+.animate__animated.animate__fadeInUp {
+  --animate-duration: 2s;
+}
+
 .blur-hide {
   animation-name: blur-hide;
   animation-duration: 300ms;
@@ -481,6 +488,7 @@ box-shadow: 5px 5px 5px 0px rgba(48,48,48,1);
   border: none;
   padding: 10px;
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  color: #000;
 }
 
 .form__btn {
@@ -656,6 +664,26 @@ select:valid {
 .panel__orders-box {
   background-color: #e3f6ce;
   position: relative;
+}
+.panel__order-select-box{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.panel__order-text{
+  color: #000;
+}
+.panel__select{
+  background-color: transparent;
+  border: 1px solid #0b3b2e !important;
+  border-radius: 5px;
+  padding: 5px;
+}
+.panel__orders-settings{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
 }
 .panel__menu__item-delete {
   padding: 7px;

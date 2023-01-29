@@ -53,10 +53,19 @@
             <div class="loader-box">
               <div class="loader"></div>
             </div>
-            <button class="panel__orders-render">
-              Оновити данні
-              <img class="load__img" src="images/load.png" alt="" />
-            </button>
+            <div class="panel__orders-settings">
+              <button class="panel__orders-render">
+                Оновити данні
+                <img class="load__img" src="images/load.png" alt="" />
+              </button>
+              <div class="panel__order-select-box">
+                <p class="panel__order-text">Сортувати за: </p>
+                <select class="panel__select select">
+                  <option value="break">Номером перерви (За зростанням)</option>
+                  <option value="date">Датою (Спочатку новіші)</option>
+                </select>
+              </div>
+            </div>
             <h2 class="panel__menu-title">Замовлення</h2>
             <ul class="panel__order-list"></ul>
           </div>

@@ -5,8 +5,14 @@ const modalBbtn = document.querySelector(".app__btn-panel");
 const modal = document.querySelector("#Modal-menu");
 const closeBtn = document.querySelector(".close-btn");
 const panelList = document.querySelector(".panel__menu-list");
-
+const selectFilter = document.querySelector(".panel__select");
 let data = null;
+let selectValue = "break";
+
+selectFilter.addEventListener("change", function () {
+  selectValue = this.value;
+  fetchOrders();
+});
 
 reRenderOrders.addEventListener("click", fetchOrders);
 
@@ -21,14 +27,18 @@ async function fetchOrders() {
     })
     .then((data) => {
       data = transformFbDataToArr(data);
-      data.sort((a, b) => (a.breakNum > b.breakNum ? 1 : -1));
+      if (selectValue == "break") {
+        data.sort((a, b) => (a.breakNum > b.breakNum ? 1 : -1));
+      } else if (selectValue == "date") {
+        data.sort((a, b) => (a.date < b.date ? 1 : -1));
+      } 
       loader.classList.remove("show");
       renderOrders(data);
     });
 }
 fetchOrders();
 
-modalBbtn.addEventListener('click',()=>{
+modalBbtn.addEventListener("click", () => {
   showModal(modal);
 });
 modal.addEventListener("click", (event) => {
@@ -40,39 +50,49 @@ modal.addEventListener("click", (event) => {
   }
 });
 
-
 function renderOrders(ordersArr) {
-    if (ordersArr.length > 0) {
-        let ordersHtml = ordersArr
-            .map((order) => {
-                let orderPrice = 0;
-                let orderFood = order.list
-                    .map((food) => {
-                        orderPrice += food.count * +food.price;
-                        return `
+  if (ordersArr.length > 0) {
+    let ordersHtml = ordersArr
+      .map((order) => {
+        let orderPrice = 0;
+        let progresClass = null;
+        let btnText = null;
+        if (localStorage.getItem(order.id) == "true") {
+          progresClass = "done";
+          btnText = "Виконано";
+        } else {
+          progresClass = "";
+          btnText = "Не виконано";
+        }
+        let orderFood = order.list
+          .map((food) => {
+            orderPrice += food.count * +food.price;
+            return `
            <li class="panel__orders-food">${food.name + " x" + food.count}</li>
           `;
-                    })
-                    .join(" ");
-                return `
+          })
+          .join(" ");
+        return `
             <li class="panel__order-item">
                 <div class="panel__order-item-box">
                   <div class="panel__order-timeout">Перерва: ${
                     order.breakNum
-                }</div>
+                  }</div>
                   <div class="panel__order-timeout panel__order-date">Дата: ${
                     order.date
-                }</div>
+                  }</div>
                   <div class="panel__order-top">
                     <p class="panel__order-info">${
-                    order.name +
-                    " " +
-                    order.surname +
-                    " Клас - " +
-                    order.classNum
-                }</p>
-                    <button class="panel__order-marker__btn">
-                      Відмітити як виконаний
+                      order.name +
+                      " " +
+                      order.surname +
+                      " Клас - " +
+                      order.classNum
+                    }</p>
+                    <button data-id='${
+                      order.id
+                    }' class="panel__order-marker__btn ${progresClass}">
+                      ${btnText}
                     </button>
                   </div>
                   <ol class="panel__orders-list__items">
@@ -84,78 +104,79 @@ function renderOrders(ordersArr) {
                 </div>
             </li>
         `;
-            })
-            .join(" ");
+      })
+      .join(" ");
 
-        orersList.innerHTML = ordersHtml;
+    orersList.innerHTML = ordersHtml;
 
-        let doneBtns = document.querySelectorAll(".panel__order-marker__btn");
-        doneBtns.forEach((btn) => {
-            btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                if (e.target.classList.contains("done")) {
-                    e.target.classList.remove("done");
-                    e.target.textContent = "Не виконано";
-                } else {
-                    e.target.classList.add("done");
-                    e.target.textContent = "Виконано";
-                }
-            });
-        });
-    }
+    let doneBtns = document.querySelectorAll(".panel__order-marker__btn");
+    doneBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (e.target.classList.contains("done")) {
+          e.target.classList.remove("done");
+          e.target.textContent = "Не виконано";
+          localStorage.setItem(e.target.dataset.id, "false");
+        } else {
+          e.target.classList.add("done");
+          e.target.textContent = "Виконано";
+          localStorage.setItem(e.target.dataset.id, "true");
+        }
+      });
+    });
+  }
 }
 
 function transformFbDataToArr(fbData) {
-    return Object.keys(fbData).map((key) => {
-        const item = fbData[key];
-        item.id = key;
-        return item;
-    });
+  return Object.keys(fbData).map((key) => {
+    const item = fbData[key];
+    item.id = key;
+    return item;
+  });
 }
 
 const form = document.querySelector(".form");
 const formButton = document.querySelector(".form__btn");
 
 formButton.addEventListener("click", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(form);
-    const name = formData.get("name-food");
-    const price = formData.get("price");
+  const formData = new FormData(form);
+  const name = formData.get("name-food");
+  const price = formData.get("price");
 
-    const menu = {
-        name: name,
-        price: price,
-        image: formData.get("image")
-    };
-    console.log(menu);
+  const menu = {
+    name: name,
+    price: price,
+    image: formData.get("image"),
+  };
+  console.log(menu);
 
-    /*Відправка меню в базу даних*/
-    class ApiService {
-        constructor(baseUrl) {
-            this.url = baseUrl;
-        }
-
-        async createMenu(menu) {
-            try {
-                const request = new Request(this.url + "/menu.json", {
-                    method: "POST",
-                    body: JSON.stringify(menu),
-                });
-                const response = await fetch(request);
-                return await response.json();
-            } catch (error) {
-                console.error(error);
-            }
-        }
+  /*Відправка меню в базу даних*/
+  class ApiService {
+    constructor(baseUrl) {
+      this.url = baseUrl;
     }
 
-    const apiService = new ApiService(
-        "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
-    );
-    apiService.createMenu(menu);
-})
+    async createMenu(menu) {
+      try {
+        const request = new Request(this.url + "/menu.json", {
+          method: "POST",
+          body: JSON.stringify(menu),
+        });
+        const response = await fetch(request);
+        return await response.json();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
 
+  const apiService = new ApiService(
+    "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
+  );
+  apiService.createMenu(menu);
+});
 
 /*Масив товарів */
 let goods = [
@@ -201,8 +222,8 @@ goods;
 renderMenuItems(goods);
 
 function renderMenuItems(menu) {
-    let menuHtml = menu.map((item) => {
-      return `
+  let menuHtml = menu.map((item) => {
+    return `
         <li class="panel__menu__item">
                 <div class="panel__menu__item-box">
                   <p class="panel__menu__item-name">${item.name}</p>
@@ -210,14 +231,13 @@ function renderMenuItems(menu) {
                 </div>
               </li>
     `;
-    });
-    menuHtml = menuHtml.join(" ");
-    panelList.innerHTML = menuHtml;
+  });
+  menuHtml = menuHtml.join(" ");
+  panelList.innerHTML = menuHtml;
 }
 
-
 function closeModal(modal) {
-  modal.classList.add('blur-hide')
+  modal.classList.add("blur-hide");
   setTimeout(() => {
     modal.classList.remove("show");
     modal.classList.remove("blur-hide");

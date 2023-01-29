@@ -348,21 +348,41 @@ formButton.addEventListener("click", (e) => {
 
   if (trayArr.length == 0) {
     ErrorMessage.innerHTML = "Додайте хочаб 1 страву";
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
   } else if (!inputSurname.value) {
     ErrorMessage.innerHTML = "Введіть Ваше Прізвище";
     inputSurname.classList.add("invalid");
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
   } else if (!inputName.value) {
     ErrorMessage.innerHTML = "Введіть Ваше Ім'я";
     inputSurname.classList.remove("invalid");
     inputName.classList.add("invalid");
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
   } else if (!selectClassNum.value) {
     ErrorMessage.innerHTML = "Виберіть ваш клас";
     inputName.classList.remove("invalid");
     selectClassNum.classList.add("invalid");
+        form.classList.add("animate__headShake");
+        setTimeout(() => {
+          form.classList.remove("animate__headShake");
+        }, 1000);
   } else if (!selectBreakNum.value) {
     ErrorMessage.innerHTML = "Виберіть номер перерви";
     selectBreakNum.classList.add("invalid");
     selectClassNum.classList.remove("invalid");
+        form.classList.add("animate__headShake");
+        setTimeout(() => {
+          form.classList.remove("animate__headShake");
+        }, 1000);
   } else {
     ErrorMessage.innerHTML = "";
     selectBreakNum.classList.remove("invalid");
