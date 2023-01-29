@@ -140,6 +140,11 @@ body {
   gap: 5px;
   user-select: none;
 }
+.app__btn-panel{
+  text-align: center;
+  display: flex;
+  margin-bottom: 30px !important;
+}
 .app__tray {
   display: flex;
   max-width: 600px;
@@ -630,6 +635,7 @@ select:valid {
 .panel__inner {
   display: flex;
   gap: 10px;
+  margin-bottom: 40px;
 }
 .panel__menu-box {
   background-color: #0a2a22;
