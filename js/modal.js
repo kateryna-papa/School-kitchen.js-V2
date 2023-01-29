@@ -2,6 +2,9 @@ let modal = document.querySelector(".modal");
 let openModalBtn = document.querySelector(".app__btn");
 let closeBtn = document.querySelector(".close-btn");
 const bodyNode = document.querySelector("body");
+
+
+
 openModalBtn.addEventListener("click", () => {
   showModal(modal);
 });
