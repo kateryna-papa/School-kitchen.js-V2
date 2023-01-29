@@ -4,6 +4,7 @@ const loader = document.querySelector(".loader-box");
 const modalBbtn = document.querySelector(".app__btn-panel");
 const modal = document.querySelector("#Modal-menu");
 const closeBtn = document.querySelector(".close-btn");
+const panelList = document.querySelector(".panel__menu-list");
 
 let data = null;
 
@@ -156,21 +157,63 @@ formButton.addEventListener("click", (e) => {
 })
 
 
-// function renderMenuItems(menu) {
-//     let menuHtml = arr.map((item) => {
-//         return `
-//         <li class="panel__menu__item">
-//                 <div class="panel__menu__item-box">
-//                   <p class="panel__menu__item-name">${item.name}</p>
-//                   <p class="panel__menu__item-price">Ціна: ${item.price} UAH</p>
-//                 </div>
-//                 <button class="panel__menu__item-delete">Видалити</button>
-//               </li>
-//     `;
-//     });
-//     menuHtml = menuHtml.join(" ");
-//     trayInner.innerHTML = menuHtml;
-// }
+/*Масив товарів */
+let goods = [
+  {
+    id: 0,
+    name: "Hot dog",
+    price: 30,
+    imgUrl: "images/dogg.png",
+    count: 1,
+  },
+  {
+    id: 1,
+    name: "Donut",
+    price: 20,
+    imgUrl: "images/dogg.png",
+    count: 1,
+  },
+  {
+    id: 2,
+    name: "Sauces",
+    price: 10,
+    imgUrl: "images/dogg.png",
+    count: 1,
+  },
+  {
+    id: 3,
+    name: "Pizza",
+    price: 30,
+    imgUrl: "images/dogg.png",
+    count: 1,
+  },
+  {
+    id: 4,
+    name: "Burger",
+    price: 30,
+    imgUrl: "images/2.png",
+    count: 1,
+  },
+];
+
+goods;
+
+renderMenuItems(goods);
+
+function renderMenuItems(menu) {
+    let menuHtml = menu.map((item) => {
+      return `
+        <li class="panel__menu__item">
+                <div class="panel__menu__item-box">
+                  <p class="panel__menu__item-name">${item.name}</p>
+                  <p class="panel__menu__item-price">Ціна: ${item.price} UAH</p>
+                </div>
+              </li>
+    `;
+    });
+    menuHtml = menuHtml.join(" ");
+    panelList.innerHTML = menuHtml;
+}
 
 
 function closeModal(modal) {
