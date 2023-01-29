@@ -407,7 +407,7 @@ formButton.addEventListener("click", (e) => {
     showModal(doneModal);
     setTimeout(() => {
       closeModal(doneModal);
-    }, 1000);
+    }, 1500);
     form.reset();
     trayArr = [];
     trayInner.innerHTML = "";

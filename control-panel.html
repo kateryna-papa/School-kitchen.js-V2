@@ -55,7 +55,9 @@
               <li class="panel__order-item">
                 <div class="panel__order-item-box">
                   <div class="panel__order-timeout">Перерва: 2</div>
-                  <div class="panel__order-timeout panel__order-date">Дата: 2</div>
+                  <div class="panel__order-timeout panel__order-date">
+                    Дата: 2
+                  </div>
                   <div class="panel__order-top">
                     <p class="panel__order-info">Ім'я Прізвище Клас - 8</p>
                     <button class="panel__order-marker__btn">
@@ -76,6 +78,43 @@
       </div>
     </section>
 
+    <div id="Modal-menu" style="display: block" class="modal">
+      <div class="modal__inner">
+        <div class="modal-content">
+          <form class="form" name="menu">
+            <div class="form__inner">
+              <div>Назва страви</div>
+              <button class="close-btn">&times;</button>
+            </div>
+            <input
+              class="input input__surname"
+              placeholder="Назва страви"
+              type="text"
+              name="name-food"
+              required
+              maxlength="20"
+            />
+            <div>Ціна</div>
+            <input
+              class="input input__name"
+              placeholder="Ціна"
+              type="number"
+              name="price"
+              required
+              maxlength="20"
+            />
+            <div>Картинка</div>
+            <input class="form__file" type="file" />
+            <button type="submit" id="FormBtn" class="form__btn">
+              <div class="form__decor">
+                <img src="images/arrow-right.svg" alt="arrow" />
+              </div>
+              <span>Відправити</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
     <script src="js/panel.js"></script>
   </body>
 </html>
