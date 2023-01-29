@@ -1,7 +1,9 @@
 const orersList = document.querySelector(".panel__order-list");
 const reRenderOrders = document.querySelector(".panel__orders-render");
 const loader = document.querySelector(".loader-box");
-
+const modalBbtn = document.querySelector(".app__btn-panel");
+const modal = document.querySelector("#Modal-menu");
+const closeBtn = document.querySelector(".close-btn");
 
 let data = null;
 
@@ -24,6 +26,18 @@ async function fetchOrders() {
     });
 }
 fetchOrders();
+
+modalBbtn.addEventListener('click',()=>{
+  showModal(modal);
+});
+modal.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.classList.contains("modal__inner")) {
+    closeModal(modal);
+  } else if (event.target === closeBtn) {
+    closeModal(modal);
+  }
+});
 
 
 function renderOrders(ordersArr) {
@@ -141,19 +155,38 @@ formButton.addEventListener("click", (e) => {
     apiService.createMenu(menu);
 })
 
-/*
-function renderMenuItems(menu) {
-    let menuHtml = arr.map((item) => {
-        return `
-        <li class="panel__menu__item">
-                <div class="panel__menu__item-box">
-                  <p class="panel__menu__item-name">${item.name}</p>
-                  <p class="panel__menu__item-price">Ціна: ${item.price} UAH</p>
-                </div>
-                <button class="panel__menu__item-delete">Видалити</button>
-              </li>
-    `;
-    });
-    menuHtml = menuHtml.join(" ");
-    trayInner.innerHTML = menuHtml;
-}*/
+
+// function renderMenuItems(menu) {
+//     let menuHtml = arr.map((item) => {
+//         return `
+//         <li class="panel__menu__item">
+//                 <div class="panel__menu__item-box">
+//                   <p class="panel__menu__item-name">${item.name}</p>
+//                   <p class="panel__menu__item-price">Ціна: ${item.price} UAH</p>
+//                 </div>
+//                 <button class="panel__menu__item-delete">Видалити</button>
+//               </li>
+//     `;
+//     });
+//     menuHtml = menuHtml.join(" ");
+//     trayInner.innerHTML = menuHtml;
+// }
+
+
+function closeModal(modal) {
+  modal.classList.add('blur-hide')
+  setTimeout(() => {
+    modal.classList.remove("show");
+    modal.classList.remove("blur-hide");
+    bodyNode.classList.remove("hidden");
+  }, 280);
+}
+
+function showModal(modal) {
+  modal.classList.add("show");
+  modal.classList.add("blur-show");
+  setTimeout(() => {
+    modal.classList.remove("blur-show");
+    bodyNode.classList.add("hidden");
+  }, 280);
+}
