@@ -1,3 +1,4 @@
+
 const orersList = document.querySelector(".panel__order-list");
 
 let data = null;
@@ -8,7 +9,6 @@ fetch("https://school-kitchen-b274e-default-rtdb.firebaseio.com/orders.json")
   })
   .then((data) => {
     data = transformFbDataToArr(data);
-    console.log(data);
     renderOrders(data);
   });
 
