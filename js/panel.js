@@ -1,16 +1,27 @@
 
 const orersList = document.querySelector(".panel__order-list");
+const reRenderOrders = document.querySelector(".panel__orders-render");
+const loader = document.querySelector(".loader-box");
+
 
 let data = null;
+reRenderOrders.addEventListener("click", fetchOrders);
 
-fetch("https://school-kitchen-b274e-default-rtdb.firebaseio.com/orders.json")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    data = transformFbDataToArr(data);
-    renderOrders(data);
-  });
+async function fetchOrders() {
+   orersList.innerHTML = '';
+  loader.classList.add('show');
+   await fetch("https://school-kitchen-b274e-default-rtdb.firebaseio.com/orders.json")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      data = transformFbDataToArr(data);
+      data.sort((a, b) => (a.breakNum > b.breakNum ? 1 : -1));
+      loader.classList.remove("show");
+      renderOrders(data);
+    });
+}
+fetchOrders();
 
 function renderOrders(ordersArr) {
   if (ordersArr.length > 0) {
