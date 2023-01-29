@@ -29,6 +29,11 @@
   .header__center img{
     max-width: 200px;
   }
+  .notification__item {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 6px;
+}
 }
 
 
@@ -60,6 +65,9 @@
   }
   .app__btn {
     font-size: 16px;
+  }
+  .notification__inner{
+    max-height: 80px;
   }
 }
 
