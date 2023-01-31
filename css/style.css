@@ -68,6 +68,10 @@ body {
   animation-timing-function: ease-in;
 }
 
+#modal__video::-webkit-media-controls {
+  display:none !important;
+}
+
 @keyframes blur-show {
   from {
     opacity: 0;
