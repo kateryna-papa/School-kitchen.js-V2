@@ -398,7 +398,7 @@ box-shadow: 5px 5px 5px 0px rgba(48,48,48,1);
 
 /*Modal Form*/
 
-.modal {
+.modal, .first__modal {
   display: none;
   position: fixed;
   z-index: 101;
@@ -431,7 +431,17 @@ box-shadow: 5px 5px 5px 0px rgba(48,48,48,1);
   background-color: #000;
   color: #fff;
 }
-
+.modal-box{
+  position: relative;
+  background-color: lemonchiffon;
+  margin: 15px auto;
+  padding: 20px;
+  border: 8px solid #ff8c00;
+  border-radius: 10px;
+  max-width: 1200px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .modal-content {
   position: relative;
   background-color: #f5f3ea;
@@ -442,6 +452,10 @@ box-shadow: 5px 5px 5px 0px rgba(48,48,48,1);
   max-width: 400px;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#modal__video{
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .close-btn {
