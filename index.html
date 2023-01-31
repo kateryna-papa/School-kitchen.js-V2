@@ -1,184 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
     <title>School kitchen</title>
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/fonts.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/media.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="notification">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/fonts.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/media.css"/>
+</head>
+<body>
+<div class="wrapper">
+    <div class="notification">
         <ul class="notification__inner">
-          <!-- <li class="notification__item notification-remove">
-          <span class="notification__text"> Страву </span>
-          <span class="notification__name">Хот-Дог</span>
-          <span class="notification__text"> було видалено з замовлення </span>
-        </li> -->
+            <!-- <li class="notification__item notification-remove">
+            <span class="notification__text"> Страву </span>
+            <span class="notification__name">Хот-Дог</span>
+            <span class="notification__text"> було видалено з замовлення </span>
+          </li> -->
         </ul>
-      </div>
-      <header class="header">
+    </div>
+    <header class="header">
         <div class="container">
-          <div class="header__inner">
-            <div class="header__right">
-              <p class="header__name">School kitchen</p>
-              <img class="header__img" src="images/icon2.svg" />
-            </div>
-            <div class="header__center">
-              <img src="images/healthy.svg" />
-            </div>
-            <div class="header__link-box">
-              <a href="control-panel.html" class="header__link">
-                Control page *test
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
-      <div class="app">
-        <div class="container">
-          <div class="app__tray__container">
-            <div class="app__tray-box_animation animate__animated animate__fadeInDown">
-              <div class="app__tray-box ">
-                <div class="app__tray"></div>
-              </div>
-            </div>
-
-            <div class="app__tray-btn">
-              <button class="app__tray-prev">
-                Видалити останній
-                <img src="images/prev.jpg" alt="" class="app__tray-prev__img" />
-              </button>
-            </div>
-            <div class="app__price__container">
-              <div class="app__price__container-box">
-                <div class="app__price__text">Вартість:</div>
-                <div class="app__price__number">
-                  <span class="app__price__number-num">0</span> <span>UAH</span>
+            <div class="header__inner">
+                <div class="header__right">
+                    <p class="header__name">School kitchen</p>
+                    <img class="header__img" src="images/icon2.svg"/>
                 </div>
-              </div>
+                <div class="header__center">
+                    <img src="images/healthy.svg"/>
+                </div>
+                <div class="header__link-box">
+                    <a href="control-panel.html" class="header__link">
+                        Control page *test
+                    </a>
+                </div>
             </div>
-          </div>
-          <div class="app__food-wrapper">
-            <ul class="app__food-inner"></ul>
-          </div>
-          <div class="app__btn-box animate__animated animate__fadeInUp">
-            <button class="app__btn">
-              <div class="app__decor">
-                <img src="images/arrow-right.svg" alt="" />
-              </div>
-              <span>Зробити замовлення</span>
+        </div>
+    </header>
+    <div class="app">
+        <div class="container">
+            <div class="app__tray__container">
+                <div class="app__tray-box_animation animate__animated animate__fadeInDown">
+                    <div class="app__tray-box ">
+                        <div class="app__tray"></div>
+                    </div>
+                </div>
+
+                <div class="app__tray-btn">
+                    <button class="app__tray-prev">
+                        Видалити останній
+                        <img src="images/prev.jpg" alt="" class="app__tray-prev__img"/>
+                    </button>
+                </div>
+                <div class="app__price__container">
+                    <div class="app__price__container-box">
+                        <div class="app__price__text">Вартість:</div>
+                        <div class="app__price__number">
+                            <span class="app__price__number-num">0</span> <span>UAH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app__food-wrapper">
+                <ul class="app__food-inner"></ul>
+            </div>
+            <div class="app__btn-box animate__animated animate__fadeInUp">
+                <button class="app__btn">
+                    <div class="app__decor">
+                        <img src="images/arrow-right.svg" alt=""/>
+                    </div>
+                    <span>Зробити замовлення</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="FirstModal" class="first__modal">
+    <div class="modal__inner">
+        <div class="modal-box">
+            <video id="modal__video" controls>
+                <source src="video/video.mp4" type="video/mp4">
+            </video>
+            <button type="submit" id="ModalBtn" class="form__btn">
+                <div class="form__decor">
+                    <img src="images/arrow-right.svg" alt="arrow"/>
+                </div>
+                <span>Вперед</span>
             </button>
-          </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <div id="Modal" class="modal">
-      <div class="modal__inner">
+<div id="Modal" class="modal">
+    <div class="modal__inner">
         <div class="modal-content">
-          <form class="form animate__animated" name="feedback">
-            <div class="form__inner">
-              <div>Прізвище</div>
-              <button class="close-btn">&times;</button>
-            </div>
-            <input
-              class="input input__surname"
-              placeholder="Ваше Прізвище"
-              type="text"
-              name="surname"
-              required
-              maxlength="20"
-            />
-            <div>Ім’я</div>
-            <input
-              class="input input__name"
-              placeholder="Ваше ім’я"
-              type="text"
-              name="name"
-              required
-              maxlength="20"
-            />
-            <div>Клас</div>
-            <select
-              class="form__select select class__select"
-              name="classNum"
-              required
-            >
-              <option value="">Виберіть варіант</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-            </select>
-            <div>Номер перерви</div>
-            <select
-              class="form__select select break__select"
-              name="breakNum"
-              required
-            >
-              <option value="">Виберіть варіант</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-            </select>
-            <div class="error-message"></div>
-            <div class="form__list-orders-title">Список замовлення</div>
-            <div class="form__list">
-              <div class="form__list">
-                <div class="form__list-text">Ви не додали жодного товару</div>
-                <ol class="form__list-items"></ol>
-              </div>
-              <div class="total__price">
-                Сума: <span class="total__price_form">0</span> <span>UAH</span>
-              </div>
-            </div>
-            <button type="submit" id="FormBtn" class="form__btn">
-              <div class="form__decor">
-                <img src="images/arrow-right.svg" alt="arrow" />
-              </div>
-              <span>Відправити</span>
-            </button>
-          </form>
+            <form class="form animate__animated" name="feedback">
+                <div class="form__inner">
+                    <div>Прізвище</div>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <input
+                        class="input input__surname"
+                        placeholder="Ваше Прізвище"
+                        type="text"
+                        name="surname"
+                        required
+                        maxlength="20"
+                />
+                <div>Ім’я</div>
+                <input
+                        class="input input__name"
+                        placeholder="Ваше ім’я"
+                        type="text"
+                        name="name"
+                        required
+                        maxlength="20"
+                />
+                <div>Клас</div>
+                <select
+                        class="form__select select class__select"
+                        name="classNum"
+                        required
+                >
+                    <option value="">Виберіть варіант</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                </select>
+                <div>Номер перерви</div>
+                <select
+                        class="form__select select break__select"
+                        name="breakNum"
+                        required
+                >
+                    <option value="">Виберіть варіант</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+                <div class="error-message"></div>
+                <div class="form__list-orders-title">Список замовлення</div>
+                <div class="form__list">
+                    <div class="form__list">
+                        <div class="form__list-text">Ви не додали жодного товару</div>
+                        <ol class="form__list-items"></ol>
+                    </div>
+                    <div class="total__price">
+                        Сума: <span class="total__price_form">0</span> <span>UAH</span>
+                    </div>
+                </div>
+                <button type="submit" id="FormBtn" class="form__btn">
+                    <div class="form__decor">
+                        <img src="images/arrow-right.svg" alt="arrow"/>
+                    </div>
+                    <span>Відправити</span>
+                </button>
+            </form>
         </div>
-      </div>
     </div>
+</div>
 
-    <div id="Modal-done" class="modal">
-      <div class="modal__inner">
+<div id="Modal-done" class="modal">
+    <div class="modal__inner">
         <div class="modal-content">
-          <p class="modal__message">Ваше замовлення успішно відправлено:)</p>
-          <img
-            class="modal__complete-img"
-            src="images/complete.png"
-            alt="complete"
-          />
+            <p class="modal__message">Ваше замовлення успішно відправлено:)</p>
+            <img
+                    class="modal__complete-img"
+                    src="images/complete.png"
+                    alt="complete"
+            />
         </div>
-      </div>
     </div>
+</div>
 
-    <script src="js/modal.js"></script>
-    <script src="js/app.js"></script>
-  </body>
+<script src="js/modal.js"></script>
+<script src="js/app.js"></script>
+</body>
 </html>
