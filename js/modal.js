@@ -5,7 +5,7 @@ const bodyNode = document.querySelector("body");
 let firstModal = document.querySelector("#FirstModal")
 let ModalBtn = document.querySelector("#ModalBtn");
 
-if (localStorage['visited'] == 'true') {
+if (localStorage['visited'] != 'true') {
     document.addEventListener('DOMContentLoaded', function () {
         showModal(firstModal)
     })
