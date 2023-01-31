@@ -5,10 +5,51 @@ const bodyNode = document.querySelector("body");
 let firstModal = document.querySelector("#FirstModal")
 let ModalBtn = document.querySelector("#ModalBtn");
 
-if (localStorage['visited'] != 'true') {
-    document.addEventListener('DOMContentLoaded', function () {
-        showModal(firstModal)
-    })
+
+
+let isDesctopModal = true;
+/**Перевірка на тип девайсу */
+const isMobileModal = {
+  Android: function () {
+    return navigator.userAgent.match(/Android/i);
+  },
+  BlackBerry: function () {
+    return navigator.userAgent.match(/BlackBerry/i);
+  },
+  iOS: function () {
+    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+  },
+  Opera: function () {
+    return navigator.userAgent.match(/Opera Mini/i);
+  },
+  Windows: function () {
+    return navigator.userAgent.match(/IEMobile/i);
+  },
+  any: function () {
+    return (
+      isMobileModal.Android() ||
+      isMobileModal.BlackBerry() ||
+      isMobileModal.iOS() ||
+      isMobileModal.Opera() ||
+      isMobileModal.Windows()
+    );
+  },
+};
+if (isMobileModal.any()) {
+  isDesctopModal = false;
+} else {
+  isDesctopModal = true;
+}
+
+
+
+if (localStorage["visited"] != "true" && isDesctopModal) {
+  document.addEventListener("DOMContentLoaded", function () {
+    showModal(firstModal);
+  });
+}
+if (!isDesctopModal) {
+  closeModal(firstModal);
 }
 
 ModalBtn.addEventListener('click', function (e) {
