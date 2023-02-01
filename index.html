@@ -94,7 +94,7 @@
           >
             <source src="video/video.mp4" type="video/mp4" />
           </video>
-          <button type="submit" id="ModalBtn" class="form__btn">
+          <button type="submit" id="ModalBtn" class="modalBtn">
             <div class="form__decor">
               <img src="images/arrow-right.svg" alt="arrow" />
             </div>
@@ -201,28 +201,7 @@
       <div class="modal__orders-inner">
         <button class="close__orders-btn">&times;</button>
         <div class="modal__orders-content">
-          <ul class="modal__orders-list">
-             <li class="panel__order-item">
-                <div class="panel__order-item-box">
-                  <div class="panel__order-timeout">Перерва:</div>
-                  <div class="panel__order-timeout panel__order-date">Дата: </div>
-                  <div class="panel__order-top">
-                    <p class="panel__order-info">iм'я Клас</p>
-                    <button data-id='${
-                      order.id
-                    }' class="panel__order-marker__btn ${progresClass}">
-                      ${btnText}
-                    </button>
-                  </div>
-                  <ol class="panel__orders-list__items">
-                   назва
-                  </ol>
-                  <p class="panel__order-fullprice">
-                    Загальна сумма замовлення:  UAH
-                  </p>
-                </div>
-            </li>
-          </ul>
+          <ul class="modal__orders-list"></ul>
         </div>
       </div>
     </div>
