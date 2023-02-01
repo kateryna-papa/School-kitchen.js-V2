@@ -13,13 +13,16 @@ const doneModal = document.getElementById("Modal-done");
 const modalOrders = document.querySelector(".modal-orders");
 const closeModalOrdersBtn = document.querySelector(".close__orders-btn");
 const openModalOrdersBtn = document.querySelector(".app__orders-list-btn");
-const body = document.querySelector('body');
+const modalOrdersList = document.querySelector(".modal__orders-list");
+const body = document.querySelector("body");
 
 let ErrorMessage = document.querySelector(".error-message");
 
 let trayArr = [];
+let personalOrders = [];
 
 let isDesctop = true;
+
 /**Перевірка на тип девайсу */
 const isMobile = {
   Android: function () {
@@ -93,6 +96,11 @@ let goods = [
 ];
 
 renderFoodsItems(goods);
+
+if (localStorage.getItem("modalOrders")) {
+  personalOrders = JSON.parse(localStorage.getItem("modalOrders"));
+  renderModalOrders(personalOrders);
+}
 
 /*Якась важлива штука, без якої не працює драг */
 trayBox.addEventListener("dragover", function (event) {
@@ -334,10 +342,10 @@ function deleteLastFood(trayArr) {
   }
 }
 
+
 /*Функція створення об’єкту, який збирає дані з форми*/
 formButton.addEventListener("click", (e) => {
   e.preventDefault();
-
   const formData = new FormData(form);
   const surname = formData.get("surname");
   const name = formData.get("name");
@@ -425,7 +433,16 @@ formButton.addEventListener("click", (e) => {
     const apiService = new ApiService(
       "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
     );
+
+
     apiService.createOrder(order);
+
+    personalOrders.push(order);
+    renderModalOrders(personalOrders);
+    localStorage.setItem("modalOrders", JSON.stringify(personalOrders));
+
+
+    
     closeModal(formModal);
     showModal(doneModal);
     setTimeout(() => {
@@ -456,12 +473,59 @@ formButton.addEventListener("click", (e) => {
   }
 });
 
-
-openModalOrdersBtn.addEventListener('click',()=>{
-  modalOrders.classList.add('open');
+openModalOrdersBtn.addEventListener("click", () => {
+  modalOrders.classList.add("open");
   body.classList.add("hidden");
 });
 closeModalOrdersBtn.addEventListener("click", () => {
   modalOrders.classList.remove("open");
-  body.classList.remove('hidden')
+  body.classList.remove("hidden");
 });
+
+function renderModalOrders(ordersArr) {
+  if (ordersArr.length > 0) {
+    let ordersHtml = ordersArr
+      .map((order) => {
+        let orderPrice = 0;
+        let progresClass = null;
+        let orderFood = order.list
+          .map((food) => {
+            orderPrice += food.count * +food.price;
+            return `
+           <li class="panel__orders-food">${food.name + " x" + food.count}</li>
+          `;
+          })
+          .join(" ");
+        return `
+            <li class="panel__order-item">
+                <div class="panel__order-item-box">
+                  <div class="panel__order-timeout">Перерва: ${
+                    order.breakNum
+                  }</div>
+                  <div class="panel__order-timeout panel__order-date">Дата: ${
+                    order.date
+                  }</div>
+                  <div class="panel__order-top">
+                    <p class="panel__order-info">${
+                      order.name +
+                      " " +
+                      order.surname +
+                      " Клас - " +
+                      order.classNum
+                    }</p>
+                  </div>
+                  <ol class="panel__orders-list__items">
+                    ${orderFood}
+                  </ol>
+                  <p class="panel__order-fullprice">
+                    Загальна сумма замовлення: ${orderPrice} UAH
+                  </p>
+                </div>
+            </li>
+        `;
+      })
+      .join(" ");
+
+    modalOrdersList.innerHTML = ordersHtml;
+  }
+}
