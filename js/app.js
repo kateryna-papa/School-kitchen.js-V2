@@ -10,6 +10,10 @@ const formButton = document.querySelector(".form__btn");
 const deleteBtn = document.querySelector(".app__tray-prev");
 const formModal = document.getElementById("Modal");
 const doneModal = document.getElementById("Modal-done");
+const modalOrders = document.querySelector(".modal-orders");
+const closeModalOrdersBtn = document.querySelector(".close__orders-btn");
+const openModalOrdersBtn = document.querySelector(".app__orders-list-btn");
+const body = document.querySelector('body');
 
 let ErrorMessage = document.querySelector(".error-message");
 
@@ -371,18 +375,18 @@ formButton.addEventListener("click", (e) => {
     ErrorMessage.innerHTML = "Виберіть ваш клас";
     inputName.classList.remove("invalid");
     selectClassNum.classList.add("invalid");
-        form.classList.add("animate__headShake");
-        setTimeout(() => {
-          form.classList.remove("animate__headShake");
-        }, 1000);
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
   } else if (!selectBreakNum.value) {
     ErrorMessage.innerHTML = "Виберіть номер перерви";
     selectBreakNum.classList.add("invalid");
     selectClassNum.classList.remove("invalid");
-        form.classList.add("animate__headShake");
-        setTimeout(() => {
-          form.classList.remove("animate__headShake");
-        }, 1000);
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
   } else {
     ErrorMessage.innerHTML = "";
     selectBreakNum.classList.remove("invalid");
@@ -398,7 +402,6 @@ formButton.addEventListener("click", (e) => {
       list: trayArr,
       date: new Date().toLocaleString(),
     };
-
 
     /*Відправка замовлення в базу даних*/
     class ApiService {
@@ -440,7 +443,7 @@ formButton.addEventListener("click", (e) => {
     setTimeout(() => {
       modal.classList.remove("show");
       modal.classList.remove("blur-hide");
-      bodyNode.classList.remove('hidden')
+      bodyNode.classList.remove("hidden");
     }, 280);
   }
   function showModal(modal) {
@@ -451,4 +454,14 @@ formButton.addEventListener("click", (e) => {
       bodyNode.classList.add("hidden");
     }, 280);
   }
+});
+
+
+openModalOrdersBtn.addEventListener('click',()=>{
+  modalOrders.classList.add('open');
+  body.classList.add("hidden");
+});
+closeModalOrdersBtn.addEventListener("click", () => {
+  modalOrders.classList.remove("open");
+  body.classList.remove('hidden')
 });
