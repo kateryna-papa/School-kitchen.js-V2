@@ -102,6 +102,15 @@ if (localStorage.getItem("modalOrders")) {
   renderModalOrders(personalOrders);
 }
 
+if (personalOrders.length > 0) {
+  setInterval(() => {
+    openModalOrdersBtn.classList.add("animate__swing");
+    setTimeout(() => {
+      openModalOrdersBtn.classList.remove("animate__swing");
+    }, 1000);
+  }, 3000);
+}
+
 /*Якась важлива штука, без якої не працює драг */
 trayBox.addEventListener("dragover", function (event) {
   event.preventDefault();
@@ -414,8 +423,14 @@ formButton.addEventListener("click", (e) => {
       selectBreakNum.options[selectBreakNum.selectedIndex].dataset.hours;
     if (hours < nowHours) {
       day++;
+      alert(
+        "Вибрана вами перерва уже закінчилась, ваше замовлення буде перенесено на завтра"
+      );
     } else if (breakNum == nowHours && nowMinuts > minuts) {
       day++;
+      alert(
+        "Вибрана вами перерва уже закінчилась, ваше замовлення буде перенесено на завтра"
+      );
     }
     var deadline = new Date(year, month, day, hours, minuts, 0);
 
@@ -457,7 +472,6 @@ formButton.addEventListener("click", (e) => {
     personalOrders.push(order);
     renderModalOrders(personalOrders);
     localStorage.setItem("modalOrders", JSON.stringify(personalOrders));
-    console.log(personalOrders);
 
     closeModal(formModal);
     showModal(doneModal);
@@ -498,17 +512,39 @@ closeModalOrdersBtn.addEventListener("click", () => {
   body.classList.remove("hidden");
 });
 
+setInterval(() => {
+  renderModalOrders(personalOrders);
+}, 1000);
+
+/*Рендер замовлень з таймером на сторінці користувача */
 function renderModalOrders(ordersArr) {
   if (ordersArr.length > 0) {
     let ordersHtml = ordersArr
       .map((order) => {
         let orderPrice = 0;
-        let progresClass = null;
+        let message;
+        let allMilliseconds =
+          Date.parse(order.deadline) - Date.parse(new Date());
+        let hours, minuts, seconds;
+        if (allMilliseconds <= 0) {
+          hours = 0;
+          minuts = 0;
+          seconds = 0;
+          message = `<div class="order-done">Замовлення готове! Смачного:)</div>`;
+        } else {
+          (hours = Math.floor(allMilliseconds / (60 * 60 * 1000))),
+            (minuts = Math.floor((allMilliseconds / (1000 * 60)) % 60)),
+            (seconds = Math.floor((allMilliseconds / 1000) % 60));
+            message = '';
+        }
+
         let orderFood = order.list
           .map((food) => {
             orderPrice += food.count * +food.price;
             return `
-           <li class="panel__orders-food">${food.name + " x" + food.count}</li>
+           <li class="panel__orders-food">${
+             food.name + " x" + food.count + "  (" + food.price + "UAH)"
+           }</li>
           `;
           })
           .join(" ");
@@ -539,12 +575,12 @@ function renderModalOrders(ordersArr) {
                     <div class="panel__order-timer-box">
                       Залишилось часу:
                       <ul class="panel__order-timer-list">
-                        <li class="panel__order-timer-days">00 <span>Днів</span> </li>
-                        <li class="panel__order-timer-hours">00 <span>Годин</span></li>
-                        <li class="panel__order-timer-minuts">00 <span>Хвилин</span></li>
-                        <li class="panel__order-timer-seconds">00 <span>Секунд</span></li>
+                        <li class="panel__order-timer-hours">${hours} <span>Годин</span></li>
+                        <li class="panel__order-timer-minuts">${minuts}<span>Хвилин</span></li>
+                        <li class="panel__order-timer-seconds">${seconds} <span>Секунд</span></li>
                       </ul>
                     </div>
+                    ${message}
                 </div>
             </li>
         `;
@@ -552,5 +588,8 @@ function renderModalOrders(ordersArr) {
       .join(" ");
 
     modalOrdersList.innerHTML = ordersHtml;
+  } else {
+    modalOrdersList.innerHTML = ` <span class="no-orders">Упс! Ви ще не зробили жодного замовлення:)</span>`;
   }
 }
+
