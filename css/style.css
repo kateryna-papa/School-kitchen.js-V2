@@ -164,7 +164,7 @@ body {
   height: 50px;
   background-color: #47b193;
   border-radius: 50%;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -847,9 +847,11 @@ select:valid {
 .panel__order-fullprice {
   display: flex;
   justify-content: flex-end;
-  text-decoration: solid 2px underline yellow;
+  text-decoration: solid 2px underline rgba(235, 235, 10, 0.801);
 }
-
+.personal__orders-box{
+  background-color: #5cb299 !important;
+}
 .modal-orders {
   position: fixed;
   z-index: 101;
@@ -859,8 +861,7 @@ select:valid {
   height: 100vh;
   overflow: auto;
   transform: translateX(150%);
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.863);
   padding: 10px;
   transition: all .8s;
 }
@@ -875,4 +876,33 @@ transform: translateX(0);
   font-size: 54px;
   color: #838383;
   margin-left: auto;
+}
+.modalBtn{
+  display: flex;
+  margin: 0 auto;
+  padding: 15px 25px 15px 70px;
+  background-color: black;
+  border-radius: 50px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Fredoka-Medium", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+  transition: all 0.5s;
+}
+.panel__order-timer-list{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.panel__order-timer-days,
+.panel__order-timer-hours,
+.panel__order-timer-minuts,
+.panel__order-timer-seconds{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
 }

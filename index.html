@@ -85,7 +85,6 @@
       <div class="modal__inner">
         <div class="modal-box">
           <video
-            preload="auto"
             autoplay
             controls
             loop
@@ -155,13 +154,26 @@
               required
             >
               <option value="">Виберіть варіант</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
+              <option data-minuts="45
+              " data-hours="9
+              " value="1">1 Урок 9:<span class="minuts-order">45</span></option>
+              <option data-minuts="40
+              " data-hours="10
+              " value="2">2 Урок 10:<span class="minuts-order">40</span></option>
+              <option data-minuts="45
+              " data-hours="11
+              " value="3">3 Урок 11:<span class="minuts-order">45</span></option>
+              <option data-minuts="50
+              " data-hours="12
+              " value="4">4 Урок 12:<span class="minuts-order">50</span></option>
+              <option data-minuts="45
+              " data-hours="13
+              " value="5">5 Урок 13:<span class="minuts-order">45</span></option>
+              <option data-minuts="40
+              " data-hours="14
+              " value="6">6 Урок 14:<span class="minuts-order">40</span></option>
             </select>
+            
             <div class="error-message"></div>
             <div class="form__list-orders-title">Список замовлення</div>
             <div class="form__list">
@@ -208,7 +220,7 @@
 
 
     <button class="app__orders-list-btn">
-      <img class="app__orders-list-img" src="images/ordersList.png" alt="img">
+      <img class="app__orders-list-img" src="images/ordersList.svg" alt="img">
     </button>
 
 

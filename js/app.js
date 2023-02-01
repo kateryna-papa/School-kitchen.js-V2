@@ -342,7 +342,6 @@ function deleteLastFood(trayArr) {
   }
 }
 
-
 /*Функція створення об’єкту, який збирає дані з форми*/
 formButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -402,6 +401,24 @@ formButton.addEventListener("click", (e) => {
     selectClassNum.classList.remove("invalid");
     inputSurname.classList.remove("invalid");
 
+    /*Створення та перевірка дати виконання замовлення */
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+    let nowHours = date.getHours();
+    let nowMinuts = date.getMinutes();
+    let minuts =
+      selectBreakNum.options[selectBreakNum.selectedIndex].dataset.minuts;
+    let hours =
+      selectBreakNum.options[selectBreakNum.selectedIndex].dataset.hours;
+    if (hours < nowHours) {
+      day++;
+    } else if (breakNum == nowHours && nowMinuts > minuts) {
+      day++;
+    }
+    var deadline = new Date(year, month, day, hours, minuts, 0);
+
     const order = {
       surname: surname,
       name: name,
@@ -409,6 +426,7 @@ formButton.addEventListener("click", (e) => {
       breakNum: breakNum,
       list: trayArr,
       date: new Date().toLocaleString(),
+      deadline: deadline,
     };
 
     /*Відправка замовлення в базу даних*/
@@ -434,15 +452,13 @@ formButton.addEventListener("click", (e) => {
       "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
     );
 
-
     apiService.createOrder(order);
 
     personalOrders.push(order);
     renderModalOrders(personalOrders);
     localStorage.setItem("modalOrders", JSON.stringify(personalOrders));
+    console.log(personalOrders);
 
-
-    
     closeModal(formModal);
     showModal(doneModal);
     setTimeout(() => {
@@ -498,11 +514,11 @@ function renderModalOrders(ordersArr) {
           .join(" ");
         return `
             <li class="panel__order-item">
-                <div class="panel__order-item-box">
-                  <div class="panel__order-timeout">Перерва: ${
+                <div class="panel__order-item-box  personal__orders-box">
+                  <div class="panel__order-timeout personal__orders-box">Перерва: ${
                     order.breakNum
                   }</div>
-                  <div class="panel__order-timeout panel__order-date">Дата: ${
+                  <div class="panel__order-timeout panel__order-date personal__orders-box">Дата: ${
                     order.date
                   }</div>
                   <div class="panel__order-top">
@@ -520,6 +536,15 @@ function renderModalOrders(ordersArr) {
                   <p class="panel__order-fullprice">
                     Загальна сумма замовлення: ${orderPrice} UAH
                   </p>
+                    <div class="panel__order-timer-box">
+                      Залишилось часу:
+                      <ul class="panel__order-timer-list">
+                        <li class="panel__order-timer-days">00 <span>Днів</span> </li>
+                        <li class="panel__order-timer-hours">00 <span>Годин</span></li>
+                        <li class="panel__order-timer-minuts">00 <span>Хвилин</span></li>
+                        <li class="panel__order-timer-seconds">00 <span>Секунд</span></li>
+                      </ul>
+                    </div>
                 </div>
             </li>
         `;
