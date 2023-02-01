@@ -27,13 +27,16 @@ async function fetchOrders() {
     })
     .then((data) => {
       data = transformFbDataToArr(data);
-      if (selectValue == "break") {
+      if (selectValue == "break" && data) {
         data.sort((a, b) => (a.breakNum > b.breakNum ? 1 : -1));
-      } else if (selectValue == "date") {
+      } else if (selectValue == "date" && data) {
         data.sort((a, b) => (a.date < b.date ? 1 : -1));
       } 
       loader.classList.remove("show");
       renderOrders(data);
+    })
+    .catch((error)=>{
+      console.log(error);
     });
 }
 fetchOrders();
@@ -51,7 +54,8 @@ modal.addEventListener("click", (event) => {
 });
 
 function renderOrders(ordersArr) {
-  if (ordersArr.length > 0) {
+  if (ordersArr) {
+    console.log('a');
     let ordersHtml = ordersArr
       .map((order) => {
         let orderPrice = 0;
@@ -124,15 +128,22 @@ function renderOrders(ordersArr) {
         }
       });
     });
+  }else{
+    orersList.innerHTML = `<p class="no-orders no-orders-dark">Замовлень немає</p>`;
   }
 }
 
 function transformFbDataToArr(fbData) {
-  return Object.keys(fbData).map((key) => {
-    const item = fbData[key];
-    item.id = key;
-    return item;
-  });
+  if (fbData) {
+      return Object.keys(fbData).map((key) => {
+        const item = fbData[key];
+        item.id = key;
+        return item;
+      });
+  } else{
+    return
+  }
+
 }
 
 const form = document.querySelector(".form");

@@ -12,7 +12,26 @@ body {
   animation-direction: alternate;
   animation-timing-function: ease-in;
 }
-
+.no-orders{
+  text-align: center;
+  font-size: 17px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order-done{
+  background-color: #04b486;
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
+}
+.no-orders-dark{
+  color: #000;
+  font-size: 24px;
+}
 .loader-box {
   position: absolute;
   top: 200px;
