@@ -1,9 +1,6 @@
 const orersList = document.querySelector(".panel__order-list");
 const reRenderOrders = document.querySelector(".panel__orders-render");
 const loader = document.querySelector(".loader-box");
-const modalBbtn = document.querySelector(".app__btn-panel");
-const modal = document.querySelector("#Modal-menu");
-const closeBtn = document.querySelector(".close-btn");
 const panelList = document.querySelector(".panel__menu-list");
 const selectFilter = document.querySelector(".panel__select");
 let data = null;
@@ -40,18 +37,6 @@ async function fetchOrders() {
     });
 }
 fetchOrders();
-
-modalBbtn.addEventListener("click", () => {
-  showModal(modal);
-});
-modal.addEventListener("click", (event) => {
-  event.preventDefault();
-  if (event.target.classList.contains("modal__inner")) {
-    closeModal(modal);
-  } else if (event.target === closeBtn) {
-    closeModal(modal);
-  }
-});
 
 function renderOrders(ordersArr) {
   if (ordersArr) {
@@ -146,49 +131,6 @@ function transformFbDataToArr(fbData) {
 
 }
 
-const form = document.querySelector(".form");
-const formButton = document.querySelector(".form__btn");
-
-formButton.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-  const name = formData.get("name-food");
-  const price = formData.get("price");
-
-  const menu = {
-    name: name,
-    price: price,
-    image: formData.get("image"),
-  };
-  console.log(menu);
-
-  /*Відправка меню в базу даних*/
-  class ApiService {
-    constructor(baseUrl) {
-      this.url = baseUrl;
-    }
-
-    async createMenu(menu) {
-      try {
-        const request = new Request(this.url + "/menu.json", {
-          method: "POST",
-          body: JSON.stringify(menu),
-        });
-        const response = await fetch(request);
-        return await response.json();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
-
-  const apiService = new ApiService(
-    "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
-  );
-  apiService.createMenu(menu);
-});
-
 /*Масив товарів */
 let goods = [
   {
@@ -228,8 +170,6 @@ let goods = [
   },
 ];
 
-goods;
-
 renderMenuItems(goods);
 
 function renderMenuItems(menu) {
@@ -247,20 +187,3 @@ function renderMenuItems(menu) {
   panelList.innerHTML = menuHtml;
 }
 
-function closeModal(modal) {
-  modal.classList.add("blur-hide");
-  setTimeout(() => {
-    modal.classList.remove("show");
-    modal.classList.remove("blur-hide");
-    bodyNode.classList.remove("hidden");
-  }, 280);
-}
-
-function showModal(modal) {
-  modal.classList.add("show");
-  modal.classList.add("blur-show");
-  setTimeout(() => {
-    modal.classList.remove("blur-show");
-    bodyNode.classList.add("hidden");
-  }, 280);
-}
