@@ -255,7 +255,7 @@ body {
 .app__food-inner {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(9, 1fr);
   gap: 20px;
   max-height: 250px;
   height: 100%;
@@ -895,20 +895,6 @@ transform: translateX(0);
   font-size: 54px;
   color: #838383;
   margin-left: auto;
-}
-.modalBtn{
-  display: flex;
-  margin: 0 auto;
-  padding: 15px 25px 15px 70px;
-  background-color: black;
-  border-radius: 50px;
-  color: #fff;
-  text-transform: uppercase;
-  font-family: "Fredoka-Medium", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  position: relative;
-  transition: all 0.5s;
 }
 .panel__order-timer-list{
   display: flex;
