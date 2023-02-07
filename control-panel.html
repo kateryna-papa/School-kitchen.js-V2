@@ -27,6 +27,13 @@
       </div>
     </header>
 
+    <button class="app__btn app__btn-panel">
+      <div class="app__decor">
+        <img src="images/arrow-right.svg" alt="" />
+      </div>
+      <span>Додати товар в меню</span>
+    </button>
+
     <section class="panel">
       <div class="container">
         <div class="panel__inner">
@@ -72,6 +79,64 @@
         </div>
       </div>
     </section>
+
+    <div id="Modal-menu" class="modal">
+      <div class="modal__inner">
+        <div class="modal-content">
+          <form class="form" name="menu">
+            <div class="form__inner">
+              <div>Назва страви</div>
+              <button class="close-btn">&times;</button>
+            </div>
+            <input
+                    class="input input__surname"
+                    placeholder="Назва страви"
+                    type="text"
+                    name="name-food"
+                    required
+                    maxlength="20"
+            />
+            <div>Ціна</div>
+            <input
+                    class="input input__name"
+                    placeholder="Ціна"
+                    type="number"
+                    name="price"
+                    required
+                    maxlength="20"
+            />
+            <div>Картинка</div>
+            <select
+                    class="form__select select class__select"
+                    name="image"
+                    required
+            >
+              <option value="images/dogg.png">Hot dog</option>
+              <option value="images/pizza.png">Pizza</option>
+              <option value="images/burger.png">Burger</option>
+              <option value="images/egg.png">Fried egg</option>
+              <option value="images/fries.png">French fries</option>
+              <option value="images/sandwich.png">Sandwich</option>
+              <option value="images/pasta.png">Pasta</option>
+              <option value="images/bread.png">Bread</option>
+              <option value="images/sauces.png">Sauces</option>
+              <option value="images/donut.png">Donut</option>
+              <option value="images/chocolate.png">Chocolate</option>
+              <option value="images/ice.png">Ice cream</option>
+              <option value="images/cola.png">Coca Cola</option>
+              <option value="images/tea.png">Tea</option>
+            </select>
+            <button type="submit" id="FormBtn" class="form__btn">
+              <div class="form__decor">
+                <img src="images/arrow-right.svg" alt="arrow" />
+              </div>
+              <span>Відправити</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script src="js/panel.js"></script>
   </body>
 </html>
