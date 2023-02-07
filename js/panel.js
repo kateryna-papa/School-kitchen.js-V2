@@ -1,8 +1,12 @@
 const orersList = document.querySelector(".panel__order-list");
 const reRenderOrders = document.querySelector(".panel__orders-render");
 const loader = document.querySelector(".loader-box");
+const modalBbtn = document.querySelector(".app__btn-panel");
+const modal = document.querySelector("#Modal-menu");
+let closeBtn = document.querySelector(".close-btn");
 const panelList = document.querySelector(".panel__menu-list");
 const selectFilter = document.querySelector(".panel__select");
+const bodyNode = document.querySelector("body");
 let data = null;
 let selectValue = "break";
 
@@ -37,6 +41,35 @@ async function fetchOrders() {
     });
 }
 fetchOrders();
+
+async function fetchMenu() {
+  panelList.innerHTML = "";
+  await fetch(
+    "https://school-kitchen-b274e-default-rtdb.firebaseio.com/menu.json"
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      data = transformFbDataToArr(data);
+      renderMenuItems(data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+}
+
+modalBbtn.addEventListener("click", () => {
+  showModal(modal);
+});
+modal.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.classList.contains("modal__inner")) {
+    closeModal(modal);
+  } else if (event.target === closeBtn) {
+    closeModal(modal);
+  }
+});
 
 function renderOrders(ordersArr) {
   if (ordersArr) {
@@ -131,8 +164,55 @@ function transformFbDataToArr(fbData) {
 
 }
 
+const form = document.querySelector(".form");
+const formButton = document.querySelector(".form__btn");
+
+formButton .addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const name = formData.get("name-food");
+  const price = formData.get("price");
+  const image = formData.get("image");
+
+  const menu = {
+    name: name,
+    price: price,
+    image: image
+  };
+  console.log(menu);
+
+  /*Відправка меню в базу даних*/
+  class ApiService {
+    constructor(baseUrl) {
+      this.url = baseUrl;
+    }
+
+    async createMenu(menu) {
+      try {
+        const request = new Request(this.url + "/menu.json", {
+          method: "POST",
+          body: JSON.stringify(menu),
+        });
+        const response = await fetch(request);
+        return await response.json();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  const apiService = new ApiService(
+      "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
+  );
+  apiService.createMenu(menu);
+  fetchMenu();
+  let menuArray = transformFbDataToArr(menu);
+  renderMenuItems(menuArray);
+});
+
 /*Масив товарів */
-let goods = [
+/*let goods = [
   {
     id: 0,
     name: "Hot dog",
@@ -142,48 +222,127 @@ let goods = [
   },
   {
     id: 1,
-    name: "Donut",
-    price: 20,
-    imgUrl: "images/dogg.png",
+    name: "Pizza",
+    price: 30,
+    imgUrl: "images/pizza.png",
     count: 1,
   },
   {
     id: 2,
-    name: "Sauces",
-    price: 10,
-    imgUrl: "images/dogg.png",
+    name: "Burger",
+    price: 30,
+    imgUrl: "images/burger.png",
     count: 1,
   },
   {
     id: 3,
-    name: "Pizza",
-    price: 30,
-    imgUrl: "images/dogg.png",
+    name: "Fried egg",
+    price: 15,
+    imgUrl: "images/egg.png",
     count: 1,
   },
   {
     id: 4,
-    name: "Burger",
+    name: "French fries",
     price: 30,
-    imgUrl: "images/2.png",
+    imgUrl: "images/fries.png",
     count: 1,
   },
-];
+  {
+    id: 5,
+    name: "Sandwich",
+    price: 25,
+    imgUrl: "images/sandwich.png",
+    count: 1,
+  },
+  {
+    id: 6,
+    name: "Pasta",
+    price: 15,
+    imgUrl: "images/pasta.png",
+    count: 1,
+  },
+  {
+    id: 7,
+    name: "Bread",
+    price: 5,
+    imgUrl: "images/bread.png",
+    count: 1,
+  },
+  {
+    id: 8,
+    name: "Sauces",
+    price: 10,
+    imgUrl: "images/sauces.png",
+    count: 1,
+  },
+  {
+    id: 9,
+    name: "Donut",
+    price: 20,
+    imgUrl: "images/donut.png",
+    count: 1,
+  },
+  {
+    id: 10,
+    name: "Chocolate",
+    price: 30,
+    imgUrl: "images/chocolate.png",
+    count: 1,
+  },
+  {
+    id: 11,
+    name: "Ice cream",
+    price: 20,
+    imgUrl: "images/ice.png",
+    count: 1,
+  },
+  {
+    id: 12,
+    name: "Coca Cola",
+    price: 20,
+    imgUrl: "images/cola.png",
+    count: 1,
+  },
+  {
+    id: 13,
+    name: "Tea",
+    price: 5,
+    imgUrl: "images/tea.png",
+    count: 1,
+  }
+];*/
 
-renderMenuItems(goods);
-
-function renderMenuItems(menu) {
-  let menuHtml = menu.map((item) => {
-    return `
-        <li class="panel__menu__item">
+function renderMenuItems(menuArr) {
+    let menuHtml = menuArr
+        .map((item) => {
+            return `
+           <li class="panel__menu__item">
                 <div class="panel__menu__item-box">
                   <p class="panel__menu__item-name">${item.name}</p>
                   <p class="panel__menu__item-price">Ціна: ${item.price} UAH</p>
                 </div>
               </li>
-    `;
-  });
-  menuHtml = menuHtml.join(" ");
-  panelList.innerHTML = menuHtml;
+          `;
+          })
+    menuHtml = menuHtml.join(" ");
+    panelList.innerHTML = menuHtml;
 }
 
+function closeModal(modal) {
+  modal.classList.add("blur-hide");
+  setTimeout(() => {
+    modal.classList.remove("show");
+    modal.classList.remove("blur-hide");
+    bodyNode.classList.remove("hidden");
+  }, 280);
+}
+
+function showModal(modal) {
+  modal.classList.add("show");
+  modal.classList.add("blur-show");
+  setTimeout(() => {
+    modal.classList.remove("blur-show");
+    bodyNode.classList.add("hidden");
+  }, 280);
+}
