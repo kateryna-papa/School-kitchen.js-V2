@@ -21,7 +21,9 @@
             <img src="images/healthy.svg" />
           </div>
           <div class="header__link-box">
-            <a href="index.html" class="header__link"> Сторінка користувача-> *test </a>
+            <a href="index.html" class="header__link">
+              Сторінка користувача-> *test
+            </a>
           </div>
         </div>
       </div>
@@ -39,22 +41,10 @@
         <div class="panel__inner">
           <div class="panel__menu-box panel-box">
             <h2 class="panel__menu-title">Меню</h2>
-            <ul class="panel__menu-list">
-              <!-- <li class="panel__menu__item">
-                <div class="panel__menu__item-box">
-                  <p class="panel__menu__item-name">Хот-Дог</p>
-                  <p class="panel__menu__item-price">Ціна: 30 UAH</p>
-                </div>
-                <button class="panel__menu__item-delete">Видалити</button>
-              </li>
-              <li class="panel__menu__item">
-                <div class="panel__menu__item-box">
-                  <p class="panel__menu__item-name">Хот-Дог</p>
-                  <p class="panel__menu__item-price">Ціна: 30 UAH</p>
-                </div>
-                <button class="panel__menu__item-delete">Видалити</button>
-              </li>-->
-            </ul>
+            <div class="loader-box-menu">
+              <div class="loader"></div>
+            </div>
+            <ul class="panel__menu-list"></ul>
           </div>
           <div class="panel__orders-box panel-box">
             <div class="loader-box">
@@ -66,7 +56,7 @@
                 <img class="load__img" src="images/load.png" alt="" />
               </button>
               <div class="panel__order-select-box">
-                <p class="panel__order-text">Сортувати за: </p>
+                <p class="panel__order-text">Сортувати за:</p>
                 <select class="panel__select select">
                   <option value="break">Номером перерви (За зростанням)</option>
                   <option value="date">Датою (Спочатку новіші)</option>
@@ -89,27 +79,28 @@
               <button class="close-btn">&times;</button>
             </div>
             <input
-                    class="input input__surname"
-                    placeholder="Назва страви"
-                    type="text"
-                    name="name-food"
-                    required
-                    maxlength="20"
+              class="input input__name input__surname"
+              placeholder="Назва страви"
+              type="text"
+              name="name-food"
+              required
+              maxlength="20"
             />
             <div>Ціна</div>
             <input
-                    class="input input__name"
-                    placeholder="Ціна"
-                    type="number"
-                    name="price"
-                    required
-                    maxlength="20"
+              class="input input__price input__name"
+              placeholder="Ціна"
+              type="number"
+              name="price"
+              required
+              maxlength="20"
+              min="1"
             />
             <div>Картинка</div>
             <select
-                    class="form__select select class__select"
-                    name="image"
-                    required
+              class="form__select image__select select class__select"
+              name="image"
+              required
             >
               <option value="images/dogg.png">Hot dog</option>
               <option value="images/pizza.png">Pizza</option>
@@ -126,6 +117,7 @@
               <option value="images/cola.png">Coca Cola</option>
               <option value="images/tea.png">Tea</option>
             </select>
+            <div class="error-block"></div>
             <button type="submit" id="FormBtn" class="form__btn">
               <div class="form__decor">
                 <img src="images/arrow-right.svg" alt="arrow" />

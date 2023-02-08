@@ -19,6 +19,7 @@ const sendModal = document.querySelector("#Modal-send_order");
 const sendBtn = document.querySelector(".modal-send");
 const noSendBtn = document.querySelector(".modal-no-send");
 const modalSendDateNode = document.querySelector(".modal-send-date");
+const loaderMenu = document.querySelector(".loader-menu");
 
 let ErrorMessage = document.querySelector(".error-message");
 
@@ -315,10 +316,11 @@ function transformFbDataToArr(fbData) {
 
 }
 
-fetchMenu()
+fetchMenu();
 
 async function fetchMenu() {
   foodsList.innerHTML = "";
+  loaderMenu.classList.add('show');
   await fetch(
       "https://school-kitchen-b274e-default-rtdb.firebaseio.com/menu.json"
   )
@@ -328,6 +330,7 @@ async function fetchMenu() {
       .then((data) => {
         data = transformFbDataToArr(data);
         renderFoodsItems(data);
+        loaderMenu.classList.remove("show");
       })
       .catch((error)=>{
         console.log(error);
@@ -580,36 +583,7 @@ formButton.addEventListener("click", (e) => {
         renderFoodsList(trayArr);
         calcPrice(trayArr);
       });
-    }else if (hours < nowHours) {
-      day++;
-      showModal(sendModal);
-      var deadline = new Date(year, month, day, hours, minuts, 0);
-      modalSendDateNode.innerHTML =
-        deadline.toLocaleDateString() + " " + hours.trim() + ":" + minuts;
-      sendBtn.addEventListener("click", () => {
-        const order = {
-          surname: surname,
-          name: name,
-          classNum: classNum,
-          breakNum: breakNum,
-          list: trayArr,
-          date: new Date().toLocaleString(),
-          deadline: deadline,
-        };
-
-        sendOrdersToFireBase(order);
-      });
-
-      noSendBtn.addEventListener("click", () => {
-        closeModal(sendModal);
-        closeModal(formModal);
-        form.reset();
-        trayArr = [];
-        trayInner.innerHTML = "";
-        renderFoodsList(trayArr);
-        calcPrice(trayArr);
-      });
-    } else if (breakNum == nowHours && nowMinuts > minuts) {
+    }else if (hours <= nowHours && nowMinuts > minuts) {
       day++;
       showModal(sendModal);
       var deadline = new Date(year, month, day, hours, minuts, 0);
