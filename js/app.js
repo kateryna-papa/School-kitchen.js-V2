@@ -61,109 +61,7 @@ if (isMobile.any()) {
   isDesctop = true;
 }
 
-/*/!*Масив товарів *!/
-let goods = [
-  {
-    id: 0,
-    name: "Hot dog",
-    price: 30,
-    imgUrl: "images/dogg.png",
-    count: 1,
-  },
-  {
-    id: 1,
-    name: "Pizza",
-    price: 30,
-    imgUrl: "images/pizza.png",
-    count: 1,
-  },
-  {
-    id: 2,
-    name: "Burger",
-    price: 30,
-    imgUrl: "images/burger.png",
-    count: 1,
-  },
-  {
-    id: 3,
-    name: "Fried egg",
-    price: 15,
-    imgUrl: "images/egg.png",
-    count: 1,
-  },
-  {
-    id: 4,
-    name: "French fries",
-    price: 30,
-    imgUrl: "images/fries.png",
-    count: 1,
-  },
-  {
-    id: 5,
-    name: "Sandwich",
-    price: 15,
-    imgUrl: "images/sandwich.png",
-    count: 1,
-  },
-  {
-    id: 6,
-    name: "Pasta",
-    price: 15,
-    imgUrl: "images/pasta.png",
-    count: 1,
-  },
-  {
-    id: 7,
-    name: "Bread",
-    price: 5,
-    imgUrl: "images/bread.png",
-    count: 1,
-  },
-  {
-    id: 8,
-    name: "Sauces",
-    price: 10,
-    imgUrl: "images/sauces.png",
-    count: 1,
-  },
-  {
-    id: 9,
-    name: "Donut",
-    price: 20,
-    imgUrl: "images/donut.png",
-    count: 1,
-  },
-  {
-    id: 10,
-    name: "Chocolate",
-    price: 30,
-    imgUrl: "images/chocolate.png",
-    count: 1,
-  },
-  {
-    id: 11,
-    name: "Ice cream",
-    price: 20,
-    imgUrl: "images/ice.png",
-    count: 1,
-  },
-  {
-    id: 12,
-    name: "Coca Cola",
-    price: 20,
-    imgUrl: "images/cola.png",
-    count: 1,
-  },
-  {
-    id: 13,
-    name: "Tea",
-    price: 5,
-    imgUrl: "images/tea.png",
-    count: 1,
-  },
-];*/
 
-/*renderFoodsItems(goods);*/
 
 if (localStorage.getItem("modalOrders")) {
   personalOrders = JSON.parse(localStorage.getItem("modalOrders"));
@@ -225,9 +123,6 @@ deleteBtn.addEventListener("click", (e) => {
 /*Логіка додавання в корзину */
 function addToTray(e) {
   const dragEl = document.querySelector(".drag");
-  // const img = dragEl.querySelector("img");
-  // let clone = img.cloneNode(true);
-  // trayInner.appendChild(clone);
   trayBox.classList.add("pulse");
   setTimeout(() => {
     trayBox.classList.remove("pulse");
@@ -339,7 +234,8 @@ async function fetchMenu() {
 
 /*Функція рендеру товарів */
 function renderFoodsItems(arr) {
-  let foodsHtml = arr.map((item) => {
+  if(arr){
+  let foodsHtml = arr?.map((item) => {
     return `
     <li data-id="${item.id}" draggable="true" class="app__food-item">
       <img src="${item.image}" alt="food" class="app__food-img" />
@@ -355,7 +251,7 @@ function renderFoodsItems(arr) {
   });
   foodsHtml = foodsHtml.join(" ");
   foodsList.innerHTML = foodsHtml;
-
+  }
   let foods = document.querySelectorAll(".app__food-item");
   let foodBtnsModal = document.querySelectorAll(".app__food-mobile__add-box");
   let addBtns = document.querySelectorAll(".app__food-mobile__add-btn");
