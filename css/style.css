@@ -59,23 +59,38 @@ body::-webkit-scrollbar-thumb
   justify-content: center;
   gap: 15px;
 }
-.madal-orders-btn {
-  padding: 10px;
-  font-size: 17px;
+.madal-orders-btn{
+  font-family: 'Marker Felt';
+  padding: 7px;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 20px;
-  transition: all 0.5s;
-  color: #000;
+  transition: all .5s;
+  color: #2A1B0A;
 }
-.madal-orders-btn:hover {
+
+/*.madal-orders-btn:hover{
   transform: scale(1.05);
+  border: solid 4px;
+}*/
+
+.modal-send:hover{
+  transform: scale(1.05);
+  border: solid 4px green;
+  color: #0b3b2e;
 }
-.modal-send {
-  background-color: green;
+
+.modal-no-send:hover{
+  transform: scale(1.05);
+  border: solid 4px red;
+  color: darkred;
 }
-.modal-no-send {
-  background-color: red;
+.modal-send{
+  border: green dashed 5px;
+}
+.modal-no-send{
+  border: red dashed 5px;
+
 }
 .no-orders-dark {
   color: #000;
@@ -617,7 +632,7 @@ body::-webkit-scrollbar-thumb
   background-color: lemonchiffon;
   margin: 15px auto;
   padding: 20px;
-  border: 8px solid #ff8c00;
+  border: 8px solid #088A68;
   border-radius: 10px;
   max-width: 1200px;
   width: 100%;
@@ -628,7 +643,7 @@ body::-webkit-scrollbar-thumb
   background-color: #f5f3ea;
   margin: 15px auto;
   padding: 20px;
-  border: 8px solid #ff8c00;
+  border: 8px solid #088A68;
   border-radius: 10px;
   max-width: 400px;
   width: 100%;
@@ -670,20 +685,12 @@ body::-webkit-scrollbar-thumb
   margin-bottom: 10px;
 }
 
-.form input {
+.form input,.form__select  {
   margin-bottom: 15px;
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.705);
   border-radius: 5px;
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
-}
-
-.form__select {
-  margin-bottom: 10px;
-  border: none;
-  padding: 10px;
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
-  color: #000;
 }
 
 .form__btn {
@@ -719,7 +726,7 @@ body::-webkit-scrollbar-thumb
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: #ff8c00;
+  background-color: #088A68;
   border-radius: 50%;
   position: absolute;
   left: 5px;
