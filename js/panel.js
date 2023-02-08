@@ -1,6 +1,7 @@
 const orersList = document.querySelector(".panel__order-list");
 const reRenderOrders = document.querySelector(".panel__orders-render");
 const loader = document.querySelector(".loader-box");
+const loaderMenu = document.querySelector(".loader-box-menu");
 const modalBbtn = document.querySelector(".app__btn-panel");
 const modal = document.querySelector("#Modal-menu");
 let closeBtn = document.querySelector(".close-btn");
@@ -44,6 +45,7 @@ fetchOrders();
 
 async function fetchMenu() {
   panelList.innerHTML = "";
+  loaderMenu.classList.add('show');
   await fetch(
     "https://school-kitchen-b274e-default-rtdb.firebaseio.com/menu.json"
   )
@@ -52,6 +54,7 @@ async function fetchMenu() {
     })
     .then((data) => {
       data = transformFbDataToArr(data);
+      loaderMenu.classList.remove("show");
       renderMenuItems(data);
     })
     .catch((error)=>{
@@ -59,6 +62,7 @@ async function fetchMenu() {
     });
 }
 fetchMenu();
+
 modalBbtn.addEventListener("click", () => {
   showModal(modal);
 });
@@ -73,8 +77,7 @@ modal.addEventListener("click", (event) => {
 
 function renderOrders(ordersArr) {
   if (ordersArr) {
-    let ordersHtml = ordersArr
-      .map((order) => {
+    let ordersHtml = ordersArr?.map((order) => {
         let orderPrice = 0;
         let progresClass = null;
         let btnText = null;
@@ -87,8 +90,7 @@ function renderOrders(ordersArr) {
           progresClass = "";
           btnText = "Не виконано";
         }
-        let orderFood = order.list
-          .map((food) => {
+        let orderFood = order.list?.map((food) => {
             orderPrice += food.count * +food.price;
             return `
            <li class="panel__orders-food">${food.name + " x" + food.count}</li>

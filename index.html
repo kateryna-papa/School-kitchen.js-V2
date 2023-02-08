@@ -67,6 +67,9 @@
             </div>
           </div>
           <div class="app__food-wrapper">
+            <div class="loader-menu">
+              <div class="loader loader-menu_users"></div>
+            </div>
             <ul class="app__food-inner"></ul>
           </div>
           <div class="app__btn-box animate__animated animate__fadeInUp">
@@ -84,7 +87,7 @@
     <div id="FirstModal" class="first__modal">
       <div class="modal__inner">
         <div class="modal-box">
-          <video autoplay="true" controls loop id="modal__video" controls>
+          <video id="modal__video">
             <source src="video/video.mp4" type="video/mp4" />
           </video>
           <button type="submit" id="ModalBtn" class="modal___btn">
@@ -243,14 +246,15 @@
       <div class="modal__inner">
         <div class="modal-content">
           <p class="modal-send_text">
-            Вибрана вами перерва вже закінчилась, ваше замовлення буде перенесено на 
+            Вибрана вами перерва вже закінчилась, ваше замовлення буде
+            перенесено на
             <span class="modal-send-date"></span>
           </p>
           <div class="modal-content-btns">
             <button class="madal-orders-btn modal-send">
               Зробити замовлення
             </button>
-             <button class="madal-orders-btn modal-no-send">
+            <button class="madal-orders-btn modal-no-send">
               Скасувати замовлення
             </button>
           </div>
