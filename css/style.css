@@ -28,6 +28,33 @@ body {
   text-align: center;
   margin-top: 10px;
 }
+.modal-send_text{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.modal-content-btns{
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.madal-orders-btn{
+  padding: 10px;
+  font-size: 17px;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 20px;
+  transition: all .5s;
+}
+.madal-orders-btn:hover{
+  transform: scale(1.05);
+}
+.modal-send{
+  background-color: green;
+}
+.modal-no-send{
+  background-color: red;
+}
 .no-orders-dark{
   color: #000;
   font-size: 24px;
