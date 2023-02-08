@@ -81,19 +81,10 @@
       </div>
     </div>
 
-
-
     <div id="FirstModal" class="first__modal">
       <div class="modal__inner">
         <div class="modal-box">
-          <video
-            autoplay
-            preload="auto"
-            controls
-            loop
-            id="modal__video"
-            controls
-          >
+          <video autoplay="true" controls loop id="modal__video" controls>
             <source src="video/video.mp4" type="video/mp4" />
           </video>
           <button type="submit" id="ModalBtn" class="modalBtn">
@@ -157,26 +148,62 @@
               required
             >
               <option value="">Виберіть варіант</option>
-              <option data-minuts="45
-              " data-hours="9
-              " value="1">1 Урок 9:<span class="minuts-order">45</span></option>
-              <option data-minuts="40
-              " data-hours="10
-              " value="2">2 Урок 10:<span class="minuts-order">40</span></option>
-              <option data-minuts="45
-              " data-hours="11
-              " value="3">3 Урок 11:<span class="minuts-order">45</span></option>
-              <option data-minuts="50
-              " data-hours="12
-              " value="4">4 Урок 12:<span class="minuts-order">50</span></option>
-              <option data-minuts="45
-              " data-hours="13
-              " value="5">5 Урок 13:<span class="minuts-order">45</span></option>
-              <option data-minuts="40
-              " data-hours="14
-              " value="6">6 Урок 14:<span class="minuts-order">40</span></option>
+              <option
+                data-minuts="45
+              "
+                data-hours="9
+              "
+                value="1"
+              >
+                1 Урок 9:<span class="minuts-order">45</span>
+              </option>
+              <option
+                data-minuts="40
+              "
+                data-hours="10
+              "
+                value="2"
+              >
+                2 Урок 10:<span class="minuts-order">40</span>
+              </option>
+              <option
+                data-minuts="45
+              "
+                data-hours="11
+              "
+                value="3"
+              >
+                3 Урок 11:<span class="minuts-order">45</span>
+              </option>
+              <option
+                data-minuts="50
+              "
+                data-hours="12
+              "
+                value="4"
+              >
+                4 Урок 12:<span class="minuts-order">50</span>
+              </option>
+              <option
+                data-minuts="45
+              "
+                data-hours="13
+              "
+                value="5"
+              >
+                5 Урок 13:<span class="minuts-order">45</span>
+              </option>
+              <option
+                data-minuts="40
+              "
+                data-hours="14
+              "
+                value="6"
+              >
+                6 Урок 14:<span class="minuts-order">40</span>
+              </option>
             </select>
-            
+
             <div class="error-message"></div>
             <div class="form__list-orders-title">Список замовлення</div>
             <div class="form__list">
@@ -212,6 +239,24 @@
       </div>
     </div>
 
+    <div id="Modal-send_order" style="display: block;" class="modal">
+      <div class="modal__inner">
+        <div class="modal-content">
+          <p class="modal-send_text">
+            Вибрана вами перерва вже закінчилась, ваше замовлення буде перенесено на завтра
+          </p>
+          <div class="modal-content-btns">
+            <button class="madal-orders-btn modal-send">
+              Зробити замовлення
+            </button>
+             <button class="madal-orders-btn modal-no-send">
+              Скасувати замовлення
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modal-orders">
       <div class="modal__orders-inner">
         <button class="close__orders-btn">&times;</button>
@@ -221,13 +266,10 @@
       </div>
     </div>
 
-
     <button class="app__orders-list-btn animate__animated">
-      <img class="app__orders-list-img" src="images/ordersList.svg" alt="img">
+      <img class="app__orders-list-img" src="images/ordersList.svg" alt="img" />
     </button>
 
-
-   
     <script src="js/modal.js"></script>
     <script src="js/app.js"></script>
   </body>

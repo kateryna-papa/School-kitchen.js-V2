@@ -484,6 +484,7 @@ formButton.addEventListener("click", (e) => {
       selectBreakNum.options[selectBreakNum.selectedIndex].dataset.minuts;
     let hours =
       selectBreakNum.options[selectBreakNum.selectedIndex].dataset.hours;
+      /*Перевірки на актуальність перерви */
     if (hours < nowHours) {
       day++;
       alert(
@@ -508,45 +509,51 @@ formButton.addEventListener("click", (e) => {
     };
 
     /*Відправка замовлення в базу даних*/
-    class ApiService {
-      constructor(baseUrl) {
-        this.url = baseUrl;
-      }
+    sendOrdersToFireBase(order);
 
-      async createOrder(order) {
-        try {
-          const request = new Request(this.url + "/orders.json", {
-            method: "POST",
-            body: JSON.stringify(order),
-          });
-          const response = await fetch(request);
-          return await response.json();
-        } catch (error) {
-          console.error(error);
-        }
+  }
+});
+
+function sendOrdersToFireBase(obj) {
+  class ApiService {
+    constructor(baseUrl) {
+      this.url = baseUrl;
+    }
+
+    async createOrder(obj) {
+      try {
+        const request = new Request(this.url + "/orders.json", {
+          method: "POST",
+          body: JSON.stringify(obj),
+        });
+        const response = await fetch(request);
+        return await response.json();
+      } catch (error) {
+        console.error(error);
       }
     }
-    const apiService = new ApiService(
-      "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
-    );
-
-    apiService.createOrder(order);
-
-    personalOrders.push(order);
-    renderModalOrders(personalOrders);
-    localStorage.setItem("modalOrders", JSON.stringify(personalOrders));
-
-    closeModal(formModal);
-    showModal(doneModal);
-    setTimeout(() => {
-      closeModal(doneModal);
-    }, 1500);
-    form.reset();
-    trayArr = [];
-    trayInner.innerHTML = "";
-    renderFoodsList(trayArr);
-    calcPrice(trayArr);
   }
+  const apiService = new ApiService(
+    "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
+  );
+
+  apiService.createOrder(obj);
+
+  personalOrders.push(obj);
+  renderModalOrders(personalOrders);
+  localStorage.setItem("modalOrders", JSON.stringify(personalOrders));
+
+  closeModal(formModal);
+  showModal(doneModal);
+  setTimeout(() => {
+    closeModal(doneModal);
+  }, 1500);
+  form.reset();
+  trayArr = [];
+  trayInner.innerHTML = "";
+  renderFoodsList(trayArr);
+  calcPrice(trayArr);
+}
 
   function closeModal(modal) {
     modal.classList.add("blur-hide");
@@ -564,7 +571,6 @@ formButton.addEventListener("click", (e) => {
       bodyNode.classList.add("hidden");
     }, 280);
   }
-});
 
 openModalOrdersBtn.addEventListener("click", () => {
   modalOrders.classList.add("open");
@@ -575,9 +581,9 @@ closeModalOrdersBtn.addEventListener("click", () => {
   body.classList.remove("hidden");
 });
 
-setInterval(() => {
-  renderModalOrders(personalOrders);
-}, 1000);
+// setInterval(() => {
+//   renderModalOrders(personalOrders);
+// }, 1000);
 
 /*Рендер замовлень з таймером на сторінці користувача */
 function renderModalOrders(ordersArr) {
