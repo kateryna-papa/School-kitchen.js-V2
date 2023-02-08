@@ -60,7 +60,7 @@ if (isMobile.any()) {
   isDesctop = true;
 }
 
-/*Масив товарів */
+/*/!*Масив товарів *!/
 let goods = [
   {
     id: 0,
@@ -160,9 +160,9 @@ let goods = [
     imgUrl: "images/tea.png",
     count: 1,
   },
-];
+];*/
 
-renderFoodsItems(goods);
+/*renderFoodsItems(goods);*/
 
 if (localStorage.getItem("modalOrders")) {
   personalOrders = JSON.parse(localStorage.getItem("modalOrders"));
@@ -302,12 +302,44 @@ function calcPrice(arr) {
   totalPriceForm.innerHTML = totalPrice;
 }
 
+function transformFbDataToArr(fbData) {
+  if (fbData) {
+    return Object.keys(fbData).map((key) => {
+      const item = fbData[key];
+      item.id = key;
+      return item;
+    });
+  } else{
+    return
+  }
+
+}
+
+fetchMenu()
+
+async function fetchMenu() {
+  foodsList.innerHTML = "";
+  await fetch(
+      "https://school-kitchen-b274e-default-rtdb.firebaseio.com/menu.json"
+  )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        data = transformFbDataToArr(data);
+        renderFoodsItems(data);
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+}
+
 /*Функція рендеру товарів */
 function renderFoodsItems(arr) {
   let foodsHtml = arr.map((item) => {
     return `
     <li data-id="${item.id}" draggable="true" class="app__food-item">
-      <img src="${item.imgUrl}" alt="food" class="app__food-img" />
+      <img src="${item.image}" alt="food" class="app__food-img" />
       <h3 class="app__food-name">${item.name}</h3>
       <p class="app__food-price"><span class="app__food-price-num">${item.price}</span> <span>UAH</span></p>
        <div class="app__food-mobile__add-box">
