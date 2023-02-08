@@ -32,7 +32,7 @@ async function fetchOrders() {
         data.sort((a, b) => (a.breakNum > b.breakNum ? 1 : -1));
       } else if (selectValue == "date" && data) {
         data.sort((a, b) => (a.date < b.date ? 1 : -1));
-      } 
+      }
       loader.classList.remove("show");
       renderOrders(data);
     })
