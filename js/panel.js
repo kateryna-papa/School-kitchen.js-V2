@@ -73,12 +73,13 @@ modal.addEventListener("click", (event) => {
 
 function renderOrders(ordersArr) {
   if (ordersArr) {
-    console.log('a');
     let ordersHtml = ordersArr
       .map((order) => {
         let orderPrice = 0;
         let progresClass = null;
         let btnText = null;
+        let deadline = new Date(order.deadline);
+        let deadlineStr = deadline.toLocaleDateString() + ' ' + deadline.getHours() + ':' + deadline.getMinutes();
         if (localStorage.getItem(order.id) == "true") {
           progresClass = "done";
           btnText = "Виконано";
@@ -122,6 +123,9 @@ function renderOrders(ordersArr) {
                   </ol>
                   <p class="panel__order-fullprice">
                     Загальна сумма замовлення: ${orderPrice} UAH
+                  </p>
+                  <p class="panel__order-deadline">
+                    Дедлайн -  ${deadlineStr}
                   </p>
                 </div>
             </li>

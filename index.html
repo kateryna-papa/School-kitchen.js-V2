@@ -87,7 +87,7 @@
           <video autoplay="true" controls loop id="modal__video" controls>
             <source src="video/video.mp4" type="video/mp4" />
           </video>
-          <button type="submit" id="ModalBtn" class="modalBtn">
+          <button type="submit" id="ModalBtn" class="modal___btn">
             <div class="form__decor">
               <img src="images/arrow-right.svg" alt="arrow" />
             </div>
@@ -239,11 +239,12 @@
       </div>
     </div>
 
-    <div id="Modal-send_order" style="display: block;" class="modal">
+    <div id="Modal-send_order"  class="modal">
       <div class="modal__inner">
         <div class="modal-content">
           <p class="modal-send_text">
-            Вибрана вами перерва вже закінчилась, ваше замовлення буде перенесено на завтра
+            Вибрана вами перерва вже закінчилась, ваше замовлення буде перенесено на 
+            <span class="modal-send-date"></span>
           </p>
           <div class="modal-content-btns">
             <button class="madal-orders-btn modal-send">

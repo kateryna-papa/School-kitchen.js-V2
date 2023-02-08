@@ -470,6 +470,24 @@ body {
 }
 
 /*Modal Form*/
+.modal___btn{
+    margin: 0 auto;
+  padding: 15px 35px 15px 70px;
+  background-color: black;
+  border-radius: 50px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Fredoka-Medium", sans-serif;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.5s;
+  user-select: none;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(48, 48, 48, 1);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(48, 48, 48, 1);
+  box-shadow: 5px 5px 5px 0px rgba(48, 48, 48, 1);
+  display: flex;
+  justify-content: center;
+}
 
 .modal,
 .first__modal {
@@ -937,4 +955,8 @@ transform: translateX(0);
   flex-direction: column;
   gap: 5px;
   align-items: center;
+}
+.panel__order-deadline{
+  text-align: center;
+  margin-top: 30px;
 }
