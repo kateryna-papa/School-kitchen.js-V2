@@ -8,6 +8,8 @@ let closeBtn = document.querySelector(".close-btn");
 const panelList = document.querySelector(".panel__menu-list");
 const selectFilter = document.querySelector(".panel__select");
 const bodyNode = document.querySelector("body");
+const errorNode = document.querySelector(".error-block");
+
 let data = null;
 let selectValue = "break";
 
@@ -33,11 +35,11 @@ async function fetchOrders() {
         data.sort((a, b) => (a.breakNum > b.breakNum ? 1 : -1));
       } else if (selectValue == "date" && data) {
         data.sort((a, b) => (a.date < b.date ? 1 : -1));
-      } 
+      }
       loader.classList.remove("show");
       renderOrders(data);
     })
-    .catch((error)=>{
+    .catch((error) => {
       console.log(error);
     });
 }
@@ -45,7 +47,7 @@ fetchOrders();
 
 async function fetchMenu() {
   panelList.innerHTML = "";
-  loaderMenu.classList.add('show');
+  loaderMenu.classList.add("show");
   await fetch(
     "https://school-kitchen-b274e-default-rtdb.firebaseio.com/menu.json"
   )
@@ -57,7 +59,7 @@ async function fetchMenu() {
       loaderMenu.classList.remove("show");
       renderMenuItems(data);
     })
-    .catch((error)=>{
+    .catch((error) => {
       console.log(error);
     });
 }
@@ -77,12 +79,18 @@ modal.addEventListener("click", (event) => {
 
 function renderOrders(ordersArr) {
   if (ordersArr) {
-    let ordersHtml = ordersArr?.map((order) => {
+    let ordersHtml = ordersArr
+      ?.map((order) => {
         let orderPrice = 0;
         let progresClass = null;
         let btnText = null;
         let deadline = new Date(order.deadline);
-        let deadlineStr = deadline.toLocaleDateString() + ' ' + deadline.getHours() + ':' + deadline.getMinutes();
+        let deadlineStr =
+          deadline.toLocaleDateString() +
+          " " +
+          deadline.getHours() +
+          ":" +
+          deadline.getMinutes();
         if (localStorage.getItem(order.id) == "true") {
           progresClass = "done";
           btnText = "Виконано";
@@ -90,7 +98,8 @@ function renderOrders(ordersArr) {
           progresClass = "";
           btnText = "Не виконано";
         }
-        let orderFood = order.list?.map((food) => {
+        let orderFood = order.list
+          ?.map((food) => {
             orderPrice += food.count * +food.price;
             return `
            <li class="panel__orders-food">${food.name + " x" + food.count}</li>
@@ -152,28 +161,27 @@ function renderOrders(ordersArr) {
         }
       });
     });
-  }else{
+  } else {
     orersList.innerHTML = `<p class="no-orders no-orders-dark">Замовлень немає</p>`;
   }
 }
 
 function transformFbDataToArr(fbData) {
   if (fbData) {
-      return Object.keys(fbData).map((key) => {
-        const item = fbData[key];
-        item.id = key;
-        return item;
-      });
-  } else{
-    return
+    return Object.keys(fbData).map((key) => {
+      const item = fbData[key];
+      item.id = key;
+      return item;
+    });
+  } else {
+    return;
   }
-
 }
 
 const form = document.querySelector(".form");
 const formButton = document.querySelector(".form__btn");
 
-formButton .addEventListener("click", (e) => {
+formButton.addEventListener("click", (e) => {
   e.preventDefault();
 
   const formData = new FormData(form);
@@ -181,24 +189,62 @@ formButton .addEventListener("click", (e) => {
   const price = formData.get("price");
   const image = formData.get("image");
 
-  const menu = {
-    name: name,
-    price: price,
-    image: image
-  };
-  console.log(menu);
+  const nameVal = document.querySelector(".input__name");
+  const priceVal = document.querySelector(".input__price");
+  const imageVal = document.querySelector(".image__select");
+
+  if (!nameVal.value) {
+    errorNode.innerHTML = "Введіть ціну";
+    nameVal.classList.add("invalid");
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
+  } else if (!priceVal.value) {
+    errorNode.innerHTML = "Введіть ціну";
+    nameVal.classList.remove("invalid");
+    priceVal.classList.add("invalid");
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
+  } else if (!imageVal.value) {
+    errorNode.innerHTML = "Виберіть картинку";
+    priceVal.classList.remove("invalid");
+    imageVal.classList.add("invalid");
+    form.classList.add("animate__headShake");
+    setTimeout(() => {
+      form.classList.remove("animate__headShake");
+    }, 1000);
+  } else {
+    errorNode.innerHTML = "";
+    nameVal.classList.remove("invalid");
+    priceVal.classList.remove("invalid");
+    imageVal.classList.remove("invalid");
+    const menu = {
+      name: name,
+      price: price,
+      image: image,
+    };
+    console.log(menu);
+
+    sendMunuToFfirebase(menu);
+  }
 
   /*Відправка меню в базу даних*/
+});
+
+function sendMunuToFfirebase(obj) {
   class ApiService {
     constructor(baseUrl) {
       this.url = baseUrl;
     }
 
-    async createMenu(menu) {
+    async createMenu(obj) {
       try {
         const request = new Request(this.url + "/menu.json", {
           method: "POST",
-          body: JSON.stringify(menu),
+          body: JSON.stringify(obj),
         });
         const response = await fetch(request);
         return await response.json();
@@ -209,13 +255,13 @@ formButton .addEventListener("click", (e) => {
   }
 
   const apiService = new ApiService(
-      "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
+    "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
   );
-  apiService.createMenu(menu);
-  let menuArray = transformFbDataToArr(menu);
+  apiService.createMenu(obj);
+  let menuArray = transformFbDataToArr(obj);
   renderMenuItems(menuArray);
   fetchMenu();
-});
+}
 
 /*Масив товарів */
 /*let goods = [
@@ -320,9 +366,8 @@ formButton .addEventListener("click", (e) => {
 ];*/
 
 function renderMenuItems(menuArr) {
-    let menuHtml = menuArr
-        .map((item) => {
-            return `
+  let menuHtml = menuArr.map((item) => {
+    return `
            <li class="panel__menu__item">
                 <div class="panel__menu__item-box">
                   <p class="panel__menu__item-name">${item.name}</p>
@@ -330,9 +375,9 @@ function renderMenuItems(menuArr) {
                 </div>
               </li>
           `;
-          })
-    menuHtml = menuHtml.join(" ");
-    panelList.innerHTML = menuHtml;
+  });
+  menuHtml = menuHtml.join(" ");
+  panelList.innerHTML = menuHtml;
 }
 
 function closeModal(modal) {
