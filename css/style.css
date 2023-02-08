@@ -334,6 +334,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 5px;
   user-select: none;
+  width: 100px;
 }
 .app__food-price {
   text-align: center;
@@ -732,7 +733,6 @@ select:valid {
 .header__link-box {
   display: flex;
   align-items: center;
-  color: transparent;
 }
 
 .header__center img {
