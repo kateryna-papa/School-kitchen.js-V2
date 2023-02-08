@@ -226,8 +226,7 @@ formButton.addEventListener("click", (e) => {
       price: price,
       image: image,
     };
-    console.log(menu);
-
+    closeModal(modal);
     sendMunuToFfirebase(menu);
   }
 

@@ -12,7 +12,7 @@ body {
   animation-direction: alternate;
   animation-timing-function: ease-in;
 }
-.no-orders{
+.no-orders {
   text-align: center;
   font-size: 17px;
   color: #fff;
@@ -20,7 +20,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.order-done{
+.order-done {
   background-color: #04b486;
   border-radius: 10px;
   padding: 10px;
@@ -28,35 +28,35 @@ body {
   text-align: center;
   margin-top: 10px;
 }
-.modal-send_text{
+.modal-send_text {
   font-size: 20px;
   text-align: center;
   margin-bottom: 20px;
 }
-.modal-content-btns{
+.modal-content-btns {
   display: flex;
   justify-content: center;
   gap: 15px;
 }
-.madal-orders-btn{
+.madal-orders-btn {
   padding: 10px;
   font-size: 17px;
   border-radius: 10px;
   font-size: 18px;
   line-height: 20px;
-  transition: all .5s;
+  transition: all 0.5s;
   color: #000;
 }
-.madal-orders-btn:hover{
+.madal-orders-btn:hover {
   transform: scale(1.05);
 }
-.modal-send{
+.modal-send {
   background-color: green;
 }
-.modal-no-send{
+.modal-no-send {
   background-color: red;
 }
-.no-orders-dark{
+.no-orders-dark {
   color: #000;
   font-size: 24px;
 }
@@ -68,7 +68,7 @@ body {
   z-index: 99;
   display: none;
 }
-.loader-menu{
+.loader-menu {
   position: absolute;
   top: 10px;
   left: 50%;
@@ -87,7 +87,7 @@ body {
 .load__img {
   max-width: 20px;
 }
-.loader-menu_users::after{
+.loader-menu_users::after {
   width: 100px !important;
   height: 100px !important;
 }
@@ -322,6 +322,7 @@ body {
   border: 2px solid transparent;
   background-color: rgba(0, 0, 0, 0.096);
   transition: all 0.3s;
+  gap: 10px;
   position: relative;
   -webkit-box-shadow: 5px 5px 5px 0px rgba(48, 48, 48, 1);
   -moz-box-shadow: 5px 5px 5px 0px rgba(48, 48, 48, 1);
@@ -352,6 +353,8 @@ body {
   user-select: none;
   word-break: break-all;
   padding: 0 10px;
+  color: #0a5c51f2;
+  width: 120px;
 }
 .app__food-price {
   text-align: center;
@@ -373,7 +376,10 @@ body {
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
-  color: #000;
+  gap: 20px;
+  color: #ffffff;
+  font-family: "Fredoka-Medium", sans-serif;
+  font-weight: 600;
 }
 .app__tray-prev:hover {
   transform: scale(1.02);
@@ -488,8 +494,8 @@ body {
 }
 
 /*Modal Form*/
-.modal___btn{
-    margin: 0 auto;
+.modal___btn {
+  margin: 0 auto;
   padding: 15px 35px 15px 70px;
   background-color: black;
   border-radius: 50px;
@@ -532,7 +538,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .hope {
@@ -670,6 +675,7 @@ body {
   display: flex;
   gap: 10px;
   margin: 0 auto;
+  color: #1ca17c;
 }
 .app__price__text {
   text-align: center;
@@ -879,6 +885,9 @@ select:valid {
   position: relative;
   padding-top: 35px;
   margin-bottom: 20px;
+  background-color: #5cb299;
+  border-radius: 10px;
+  color: #fff;
 }
 .panel__order-item-box {
   padding: 15px;
@@ -932,7 +941,7 @@ select:valid {
   justify-content: flex-end;
   text-decoration: solid 2px underline rgba(235, 235, 10, 0.801);
 }
-.personal__orders-box{
+.personal__orders-box {
   background-color: #5cb299 !important;
 }
 .modal-orders {
@@ -946,10 +955,10 @@ select:valid {
   transform: translateX(150%);
   background-color: rgba(0, 0, 0, 0.863);
   padding: 10px;
-  transition: all .8s;
+  transition: all 0.8s;
 }
-.modal-orders.open{
-transform: translateX(0);
+.modal-orders.open {
+  transform: translateX(0);
 }
 .modal__orders-inner {
   max-width: 500px;
@@ -960,22 +969,24 @@ transform: translateX(0);
   color: #838383;
   margin-left: auto;
 }
-.panel__order-timer-list{
+.panel__order-timer-list {
   display: flex;
   gap: 10px;
   justify-content: center;
   margin-top: 30px;
 }
+
 .panel__order-timer-days,
 .panel__order-timer-hours,
 .panel__order-timer-minuts,
-.panel__order-timer-seconds{
+.panel__order-timer-seconds {
   display: flex;
   flex-direction: column;
   gap: 5px;
   align-items: center;
+  font-size: 20px;
 }
-.panel__order-deadline{
+.panel__order-deadline {
   text-align: center;
   margin-top: 30px;
 }
