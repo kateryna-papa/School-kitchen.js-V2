@@ -79,7 +79,7 @@
               <button class="close-btn">&times;</button>
             </div>
             <input
-              class="input input__surname"
+              class="input input__name input__surname"
               placeholder="Назва страви"
               type="text"
               name="name-food"
@@ -88,16 +88,17 @@
             />
             <div>Ціна</div>
             <input
-              class="input input__name"
+              class="input input__price input__name"
               placeholder="Ціна"
               type="number"
               name="price"
               required
               maxlength="20"
+              min="1"
             />
             <div>Картинка</div>
             <select
-              class="form__select select class__select"
+              class="form__select image__select select class__select"
               name="image"
               required
             >
@@ -116,6 +117,7 @@
               <option value="images/cola.png">Coca Cola</option>
               <option value="images/tea.png">Tea</option>
             </select>
+            <div class="error-block"></div>
             <button type="submit" id="FormBtn" class="form__btn">
               <div class="form__decor">
                 <img src="images/arrow-right.svg" alt="arrow" />

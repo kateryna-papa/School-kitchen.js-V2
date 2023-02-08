@@ -350,6 +350,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 5px;
   user-select: none;
+  word-break: break-all;
   padding: 0 10px;
 }
 .app__food-price {
