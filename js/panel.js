@@ -210,9 +210,9 @@ formButton .addEventListener("click", (e) => {
       "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
   );
   apiService.createMenu(menu);
-  fetchMenu();
   let menuArray = transformFbDataToArr(menu);
   renderMenuItems(menuArray);
+  fetchMenu();
 });
 
 /*Масив товарів */
