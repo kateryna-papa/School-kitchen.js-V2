@@ -10,66 +10,66 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header class="header">
-      <div class="container">
-        <div class="header__inner">
-          <div class="header__right">
-            <p class="header__name">School kitchen</p>
-            <img class="header__img" src="images/icon2.svg" />
-          </div>
-          <div class="header__center">
-            <img src="images/healthy.svg" />
-          </div>
-          <div class="header__link-box">
-            <a href="index.html" class="header__link">
-              Сторінка користувача-> *test
-            </a>
+
+      <header class="header">
+        <div class="container">
+          <div class="header__inner">
+            <div class="header__right">
+              <p class="header__name">School kitchen</p>
+              <img class="header__img" src="images/icon2.svg" />
+            </div>
+            <div class="header__link-box">
+              <a href="index.html" class="header__link">
+                Сторінка користувача *test
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <button class="app__btn app__btn-panel">
-      <div class="app__decor">
-        <img src="images/arrow-right.svg" alt="" />
-      </div>
-      <span>Додати товар в меню</span>
-    </button>
+      <button class="app__btn app__btn-panel">
+        <div class="app__decor">
+          <img src="images/arrow-right.svg" alt="" />
+        </div>
+        <span>Додати товар в меню</span>
+      </button>
 
-    <section class="panel">
-      <div class="container">
-        <div class="panel__inner">
-          <div class="panel__menu-box panel-box">
-            <h2 class="panel__menu-title">Меню</h2>
-            <div class="loader-box-menu">
-              <div class="loader"></div>
-            </div>
-            <ul class="panel__menu-list"></ul>
-          </div>
-          <div class="panel__orders-box panel-box">
-            <div class="loader-box">
-              <div class="loader"></div>
-            </div>
-            <div class="panel__orders-settings">
-              <button class="panel__orders-render">
-                Оновити данні
-                <img class="load__img" src="images/load.png" alt="" />
-              </button>
-              <div class="panel__order-select-box">
-                <p class="panel__order-text">Сортувати за:</p>
-                <select class="panel__select select">
-                  <option value="break">Номером перерви (За зростанням)</option>
-                  <option value="date">Датою (Спочатку новіші)</option>
-                </select>
+      <section class="panel">
+        <div class="container">
+          <div class="panel__inner">
+            <div class="panel__menu-box panel-box">
+              <h2 class="panel__menu-title">Меню</h2>
+              <div class="loader-box-menu">
+                <div class="loader"></div>
               </div>
+              <ul class="panel__menu-list"></ul>
             </div>
-            <h2 class="panel__menu-title">Замовлення</h2>
-            <ul class="panel__order-list"></ul>
+            <div class="panel__orders-box panel-box">
+              <div class="loader-box">
+                <div class="loader"></div>
+              </div>
+              <div class="panel__orders-settings">
+                <button class="panel__orders-render">
+                  Оновити данні
+                  <img class="load__img" src="images/load.png" alt="" />
+                </button>
+                <div class="panel__order-select-box">
+                  <p class="panel__order-text">Сортувати за:</p>
+                  <select class="panel__select select">
+                    <option value="break">
+                      Номером перерви (За зростанням)
+                    </option>
+                    <option value="date">Датою (Спочатку новіші)</option>
+                  </select>
+                </div>
+              </div>
+              <h2 class="panel__menu-title">Замовлення</h2>
+              <ul class="panel__order-list"></ul>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
+      </section>
+  
     <div id="Modal-menu" class="modal">
       <div class="modal__inner">
         <div class="modal-content">

@@ -829,7 +829,6 @@ select:valid {
 .header__link-box {
   display: flex;
   align-items: center;
-  color: transparent;
 }
 
 .header__center img {
