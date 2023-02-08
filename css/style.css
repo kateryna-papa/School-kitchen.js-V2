@@ -667,7 +667,9 @@ body::-webkit-scrollbar-thumb
   color: black;
   margin-bottom: 10px;
 }
-
+.panel__order-item-dark{
+  background-color: #0b3b2e !important;
+}
 .form input,.form__select  {
   margin-bottom: 15px;
   padding: 10px;

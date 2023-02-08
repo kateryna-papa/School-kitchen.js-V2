@@ -107,7 +107,7 @@ function renderOrders(ordersArr) {
           })
           .join(" ");
         return `
-            <li class="panel__order-item">
+            <li class="panel__order-item panel__order-item-dark">
                 <div class="panel__order-item-box">
                   <div class="panel__order-timeout">Перерва: ${
                     order.breakNum
