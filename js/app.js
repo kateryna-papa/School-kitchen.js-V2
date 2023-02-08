@@ -478,7 +478,7 @@ formButton.addEventListener("click", (e) => {
     inputSurname.classList.remove("invalid");
 
     /*Створення та перевірка дати виконання замовлення */
-    let date = new Date();
+    let date = new Date(); 
     let year = date.getFullYear();
     let month = date.getMonth();
     let day = date.getDate();
@@ -490,7 +490,65 @@ formButton.addEventListener("click", (e) => {
       selectBreakNum.options[selectBreakNum.selectedIndex].dataset.hours;
 
     /*Перевірки на актуальність перерви */
-    if (hours < nowHours) {
+    if (date.getDay() == 0) {
+      day++;
+      showModal(sendModal);
+      var deadline = new Date(year, month, day, hours, minuts, 0);
+      modalSendDateNode.innerHTML =
+        deadline.toLocaleDateString() + " " + hours.trim() + ":" + minuts;
+      sendBtn.addEventListener("click", () => {
+        const order = {
+          surname: surname,
+          name: name,
+          classNum: classNum,
+          breakNum: breakNum,
+          list: trayArr,
+          date: new Date().toLocaleString(),
+          deadline: deadline,
+        };
+
+        sendOrdersToFireBase(order);
+      });
+
+      noSendBtn.addEventListener("click", () => {
+        closeModal(sendModal);
+        closeModal(formModal);
+        form.reset();
+        trayArr = [];
+        trayInner.innerHTML = "";
+        renderFoodsList(trayArr);
+        calcPrice(trayArr);
+      });
+    } else if (date.getDay() == 6) {
+      day = day + 2;
+      showModal(sendModal);
+      var deadline = new Date(year, month, day, hours, minuts, 0);
+      modalSendDateNode.innerHTML =
+        deadline.toLocaleDateString() + " " + hours.trim() + ":" + minuts;
+      sendBtn.addEventListener("click", () => {
+        const order = {
+          surname: surname,
+          name: name,
+          classNum: classNum,
+          breakNum: breakNum,
+          list: trayArr,
+          date: new Date().toLocaleString(),
+          deadline: deadline,
+        };
+
+        sendOrdersToFireBase(order);
+      });
+
+      noSendBtn.addEventListener("click", () => {
+        closeModal(sendModal);
+        closeModal(formModal);
+        form.reset();
+        trayArr = [];
+        trayInner.innerHTML = "";
+        renderFoodsList(trayArr);
+        calcPrice(trayArr);
+      });
+    }else if (hours < nowHours) {
       day++;
       showModal(sendModal);
       var deadline = new Date(year, month, day, hours, minuts, 0);
@@ -566,7 +624,6 @@ formButton.addEventListener("click", (e) => {
 });
 
 function sendOrdersToFireBase(obj) {
-  console.log(obj.deadline);
   class ApiService {
     constructor(baseUrl) {
       this.url = baseUrl;
