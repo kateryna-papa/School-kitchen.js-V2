@@ -9,6 +9,7 @@
   }
   .app__food-item {
     width: 120px;
+    padding: 10px;
   }
   .app__food-name {
     font-size: 19px;

@@ -45,6 +45,7 @@ body {
   font-size: 18px;
   line-height: 20px;
   transition: all .5s;
+  color: #000;
 }
 .madal-orders-btn:hover{
   transform: scale(1.05);
@@ -281,8 +282,7 @@ body {
 }
 .app__food-inner {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  display: flex;
   gap: 20px;
   max-height: 250px;
   height: 100%;
@@ -301,7 +301,7 @@ body {
   flex-direction: column;
   margin: 0 auto;
   cursor: pointer;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   border: 2px solid transparent;
   background-color: rgba(0, 0, 0, 0.096);
