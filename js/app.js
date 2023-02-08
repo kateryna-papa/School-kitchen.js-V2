@@ -15,6 +15,10 @@ const closeModalOrdersBtn = document.querySelector(".close__orders-btn");
 const openModalOrdersBtn = document.querySelector(".app__orders-list-btn");
 const modalOrdersList = document.querySelector(".modal__orders-list");
 const body = document.querySelector("body");
+const sendModal = document.querySelector("#Modal-send_order");
+const sendBtn = document.querySelector(".modal-send");
+const noSendBtn = document.querySelector(".modal-no-send");
+const modalSendDateNode = document.querySelector(".modal-send-date");
 
 let ErrorMessage = document.querySelector(".error-message");
 
@@ -155,7 +159,7 @@ let goods = [
     price: 5,
     imgUrl: "images/tea.png",
     count: 1,
-  }
+  },
 ];
 
 renderFoodsItems(goods);
@@ -484,37 +488,85 @@ formButton.addEventListener("click", (e) => {
       selectBreakNum.options[selectBreakNum.selectedIndex].dataset.minuts;
     let hours =
       selectBreakNum.options[selectBreakNum.selectedIndex].dataset.hours;
-      /*Перевірки на актуальність перерви */
+
+    /*Перевірки на актуальність перерви */
     if (hours < nowHours) {
       day++;
-      alert(
-        "Вибрана вами перерва уже закінчилась, ваше замовлення буде перенесено на завтра"
-      );
+      showModal(sendModal);
+      var deadline = new Date(year, month, day, hours, minuts, 0);
+      modalSendDateNode.innerHTML =
+        deadline.toLocaleDateString() + " " + hours.trim() + ":" + minuts;
+      sendBtn.addEventListener("click", () => {
+        const order = {
+          surname: surname,
+          name: name,
+          classNum: classNum,
+          breakNum: breakNum,
+          list: trayArr,
+          date: new Date().toLocaleString(),
+          deadline: deadline,
+        };
+
+        sendOrdersToFireBase(order);
+      });
+
+      noSendBtn.addEventListener("click", () => {
+        closeModal(sendModal);
+        closeModal(formModal);
+        form.reset();
+        trayArr = [];
+        trayInner.innerHTML = "";
+        renderFoodsList(trayArr);
+        calcPrice(trayArr);
+      });
     } else if (breakNum == nowHours && nowMinuts > minuts) {
       day++;
-      alert(
-        "Вибрана вами перерва уже закінчилась, ваше замовлення буде перенесено на завтра"
-      );
+      showModal(sendModal);
+      var deadline = new Date(year, month, day, hours, minuts, 0);
+      modalSendDateNode.innerHTML =
+        deadline.toLocaleDateString() + " " + hours.trim() + ":" + minuts;
+      sendBtn.addEventListener("click", () => {
+        const order = {
+          surname: surname,
+          name: name,
+          classNum: classNum,
+          breakNum: breakNum,
+          list: trayArr,
+          date: new Date().toLocaleString(),
+          deadline: deadline,
+        };
+
+        sendOrdersToFireBase(order);
+      });
+
+      noSendBtn.addEventListener("click", () => {
+        closeModal(sendModal);
+        closeModal(formModal);
+        form.reset();
+        trayArr = [];
+        trayInner.innerHTML = "";
+        renderFoodsList(trayArr);
+        calcPrice(trayArr);
+      });
+    } else {
+      var deadline = new Date(year, month, day, hours, minuts, 0);
+      const order = {
+        surname: surname,
+        name: name,
+        classNum: classNum,
+        breakNum: breakNum,
+        list: trayArr,
+        date: new Date().toLocaleString(),
+        deadline: deadline,
+      };
+
+      sendOrdersToFireBase(order);
     }
-    var deadline = new Date(year, month, day, hours, minuts, 0);
-
-    const order = {
-      surname: surname,
-      name: name,
-      classNum: classNum,
-      breakNum: breakNum,
-      list: trayArr,
-      date: new Date().toLocaleString(),
-      deadline: deadline,
-    };
-
-    /*Відправка замовлення в базу даних*/
-    sendOrdersToFireBase(order);
-
   }
 });
 
 function sendOrdersToFireBase(obj) {
+  console.log(obj.deadline);
   class ApiService {
     constructor(baseUrl) {
       this.url = baseUrl;
@@ -544,6 +596,7 @@ function sendOrdersToFireBase(obj) {
   localStorage.setItem("modalOrders", JSON.stringify(personalOrders));
 
   closeModal(formModal);
+  closeModal(sendModal);
   showModal(doneModal);
   setTimeout(() => {
     closeModal(doneModal);
@@ -555,22 +608,22 @@ function sendOrdersToFireBase(obj) {
   calcPrice(trayArr);
 }
 
-  function closeModal(modal) {
-    modal.classList.add("blur-hide");
-    setTimeout(() => {
-      modal.classList.remove("show");
-      modal.classList.remove("blur-hide");
-      bodyNode.classList.remove("hidden");
-    }, 280);
-  }
-  function showModal(modal) {
-    modal.classList.add("show");
-    modal.classList.add("blur-show");
-    setTimeout(() => {
-      modal.classList.remove("blur-show");
-      bodyNode.classList.add("hidden");
-    }, 280);
-  }
+function closeModal(modal) {
+  modal.classList.add("blur-hide");
+  setTimeout(() => {
+    modal.classList.remove("show");
+    modal.classList.remove("blur-hide");
+    bodyNode.classList.remove("hidden");
+  }, 280);
+}
+function showModal(modal) {
+  modal.classList.add("show");
+  modal.classList.add("blur-show");
+  setTimeout(() => {
+    modal.classList.remove("blur-show");
+    bodyNode.classList.add("hidden");
+  }, 280);
+}
 
 openModalOrdersBtn.addEventListener("click", () => {
   modalOrders.classList.add("open");
@@ -581,9 +634,9 @@ closeModalOrdersBtn.addEventListener("click", () => {
   body.classList.remove("hidden");
 });
 
-// setInterval(() => {
-//   renderModalOrders(personalOrders);
-// }, 1000);
+setInterval(() => {
+  renderModalOrders(personalOrders);
+}, 1000);
 
 /*Рендер замовлень з таймером на сторінці користувача */
 function renderModalOrders(ordersArr) {
@@ -604,7 +657,7 @@ function renderModalOrders(ordersArr) {
           (hours = Math.floor(allMilliseconds / (60 * 60 * 1000))),
             (minuts = Math.floor((allMilliseconds / (1000 * 60)) % 60)),
             (seconds = Math.floor((allMilliseconds / 1000) % 60));
-            message = '';
+          message = "";
         }
 
         let orderFood = order.list
@@ -661,4 +714,3 @@ function renderModalOrders(ordersArr) {
     modalOrdersList.innerHTML = ` <span class="no-orders">Упс! Ви ще не зробили жодного замовлення:)</span>`;
   }
 }
-
