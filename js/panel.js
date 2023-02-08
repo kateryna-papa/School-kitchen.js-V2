@@ -58,7 +58,7 @@ async function fetchMenu() {
       console.log(error);
     });
 }
-
+fetchMenu();
 modalBbtn.addEventListener("click", () => {
   showModal(modal);
 });
