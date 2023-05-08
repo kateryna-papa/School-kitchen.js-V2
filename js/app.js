@@ -217,7 +217,7 @@ async function fetchMenu() {
   foodsList.innerHTML = "";
   loaderMenu.classList.add('show');
   await fetch(
-      "https://school-kitchen-b274e-default-rtdb.firebaseio.com/menu.json"
+      "https://school-kitchen-71370-default-rtdb.firebaseio.com/menu.json"
   )
       .then((response) => {
         return response.json();
@@ -545,7 +545,7 @@ function sendOrdersToFireBase(obj) {
     }
   }
   const apiService = new ApiService(
-    "https://school-kitchen-b274e-default-rtdb.firebaseio.com"
+    "https://school-kitchen-71370-default-rtdb.firebaseio.com"
   );
 
   apiService.createOrder(obj);
