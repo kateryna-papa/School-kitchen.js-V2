@@ -24,7 +24,7 @@ async function fetchOrders() {
   orersList.innerHTML = "";
   loader.classList.add("show");
   await fetch(
-    "https://school-kitchen-71370-default-rtdb.firebaseio.com/orders.json"
+    "https://school-kitchen-f48e9-default-rtdb.firebaseio.com/orders.json"
   )
     .then((response) => {
       return response.json();
@@ -49,7 +49,7 @@ async function fetchMenu() {
   panelList.innerHTML = "";
   loaderMenu.classList.add("show");
   await fetch(
-    "https://school-kitchen-71370-default-rtdb.firebaseio.com/menu.json"
+    "https://school-kitchen-f48e9-default-rtdb.firebaseio.com/menu.json"
   )
     .then((response) => {
       return response.json();
@@ -254,7 +254,7 @@ function sendMunuToFfirebase(obj) {
   }
 
   const apiService = new ApiService(
-    "https://school-kitchen-71370-default-rtdb.firebaseio.com"
+    "https://school-kitchen-f48e9-default-rtdb.firebaseio.com"
   );
   apiService.createMenu(obj);
   let menuArray = transformFbDataToArr(obj);
